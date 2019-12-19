@@ -1,0 +1,29 @@
+
+.vertical-menu{
+    width: 200px;
+
+}
+.vertical-menu a{
+    background-color: burlywood;
+    color:black;
+    display: block;
+    padding: 20px;
+    text-decoration: none;
+}
+.vertical-menu a:hover{
+    background-color: blanchedalmond;
+}
+.vertical-menu a.active{
+    background-color: chartreuse;
+}
+
+div#vertical-menu{
+    float:initial;
+    
+}
+div#form{
+    float: right;
+    
+    margin-top: -500px;
+    margin-right: 100px;
+}
