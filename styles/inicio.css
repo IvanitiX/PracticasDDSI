@@ -1,0 +1,25 @@
+nav.header{
+    background-color: yellow;
+}
+
+li.nav-link a.enlace{
+    color: steelblue;
+}
+
+li.nav-link a.enlace:hover{
+    background-color: white;
+    color: blue;
+}
+
+body{
+    background-image: url("../img/gimnasio.jpg");
+    background-color: powderblue;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+div.inicio{
+    padding-top: 10%;
+    color: white;
+}
