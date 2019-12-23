@@ -21,9 +21,8 @@ div#vertical-menu{
     float:initial;
     
 }
-div#form{
-    float: right;
-    
-    margin-top: -500px;
-    margin-right: 100px;
+
+h4.tit{
+    color:white;
 }
+
