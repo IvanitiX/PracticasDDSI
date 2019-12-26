@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="../styles/estilos.css">
-        <link rel="stylesheet" type="text/css" href="../styles/from.css">
+        <link rel="stylesheet" type="text/css" href="../styles/form.css">
 
         <meta http-equiv="X-UA-Compatible" content="firefox">
         <link rel="stylesheet" href="../styles/inicio.css">
@@ -17,35 +17,14 @@
       
         <style>
             
-           
-            form{
-                position: relative;
-                top:-500px;
-                left: 100px;
-                margin:0 auto;
-                font-size: 0.8em;
-                border-radius: 10px;
-                color: rgb(214, 213, 213);
-                width: 300px;
-                padding:20px;
-                background-color: rgba(7, 101, 138, 0.5);
-            }
-            input,select{
-                
-                border:0;
-            }
-            .field{
-                border: solid 1px #ccc;
-                width: 250px;
-                padding:10px
-            }
+          
             
         </style>
 
         </head>
         <body>
             <nav class="navbar sticky-top navbar-expand-lg navbar-dark header">
-            <a href="#" class="navbar-brand mr-auto">
+            <a href="../inicio.html" class="navbar-brand mr-auto">
                 <img src="../img/Logo.png" alt="ITFit" width="64" height="64"/>
             </a>
             <span class="areagestion navbar-text">
@@ -59,18 +38,18 @@
         </nav>
     
      <div class="vertical-menu">
-        <a href="./RRHH.html" class="active">Recursos Humanos</a>
-        <a href="./jornada.html">Asignar Jornada laboral</a>
+        <a href="./RRHH.html">Recursos Humanos</a>
+        <a href="./jornada.html" class="active">Asignar Jornada laboral</a>
         <a href="./InformegeneralRRHH.html">Calcular Informe geneal RRHH</a>
         <a href="./dardealta.html">Dar de alta empleado</a>
         <a href="./despedir.html">Despedir empleado</a>
         <a href="./asignarcurso.html">Asignar curso</a>
         <a href="./bajaempleado.html">Dar de baja empleado</a>
-        <a href="./solictarbaja.html">Solicitar baja</a>
     </div>
     <body>
             
             <form action ="./php/">
+                <h4>Asignar jornada laboral</h4>
                 <p>Selecciona Centro</p>
                     <select name ="select" class="field">
                         <option value="centro1">Centro 1</option>
@@ -84,7 +63,7 @@
                     <input type= "text" class= "field" name="idEmpleado" size="15" maxlenght="30"/>
                 <p></p>
 
-                <input type="submit" vlass ="field" name="enviar" value="Submit" />
+                <input type="submit" class ="botton" name="enviar" value="Submit" />
                     
             </form>
     
