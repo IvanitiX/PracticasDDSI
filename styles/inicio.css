@@ -22,5 +22,16 @@ body{
 div.inicio{
     padding-top: 10%;
     color: white;
+}
 
+div.login{
+    margin-top: 20% ;
+}
+.salida{
+    padding-top: 40%;
+}
+
+img.logo{
+    margin-top: -20%;
+    padding-top: 0%;
 }

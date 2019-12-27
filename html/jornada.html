@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="../styles/estilos.css">
-        <link rel="stylesheet" type="text/css" href="../styles/form.css">
+        <link rel="stylesheet" type="text/css" href="../styles/from.css">
 
         <meta http-equiv="X-UA-Compatible" content="firefox">
         <link rel="stylesheet" href="../styles/inicio.css">
@@ -15,10 +15,37 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
       
-      
-    
-        <nav class="navbar sticky-top navbar-expand-lg navbar-dark header">
-            <a href="../inicio.html" class="navbar-brand mr-auto">
+        <style>
+            
+           
+            form{
+                position: relative;
+                top:-500px;
+                left: 100px;
+                margin:0 auto;
+                font-size: 0.8em;
+                border-radius: 10px;
+                color: rgb(214, 213, 213);
+                width: 300px;
+                padding:20px;
+                background-color: rgba(7, 101, 138, 0.5);
+            }
+            input,select{
+                
+                border:0;
+            }
+            .field{
+                border: solid 1px #ccc;
+                width: 250px;
+                padding:10px
+            }
+            
+        </style>
+
+        </head>
+        <body>
+            <nav class="navbar sticky-top navbar-expand-lg navbar-dark header">
+            <a href="#" class="navbar-brand mr-auto">
                 <img src="../img/Logo.png" alt="ITFit" width="64" height="64"/>
             </a>
             <span class="areagestion navbar-text">
@@ -30,42 +57,36 @@
                 </ul>
             </span>
         </nav>
-
-        </head>
-
-        <body>
-           
+    
      <div class="vertical-menu">
-        <a href="./RRHH.html">Recursos Humanos</a>
-        <a href="./jornada.html" >Asignar Jornada laboral</a>
-        <a href="./InformegeneralRRHH.html" class="active">Calcular Informe geneal RRHH</a>
-        <a href="./dardealta.html">Dar de alta empleado</a>
-        <a href="./despedir.html">Despedir empleado</a>
-        <a href="./asignarcurso.html">Asignar curso</a>
-        <a href="./bajaempleado.html">Dar de baja empleado</a>
+        <a href="RRHH.html" class="active">Recursos Humanos</a>
+        <a href="jornada.html">Asignar Jornada laboral</a>
+        <a href="InformegeneralRRHH.html">Calcular Informe geneal RRHH</a>
+        <a href="dardealta.html">Dar de alta empleado</a>
+        <a href="despedir.html">Despedir empleado</a>
+        <a href="asignarcurso.html">Asignar curso</a>
+        <a href="bajaempleado.html">Dar de baja empleado</a>
+        <a href="solictarbaja.html">Solicitar baja</a>
     </div>
     <body>
-    
-        
-            <form action ="./php/" class="formrrhh">
-                <h4>Calcular informe general recursos humanos</h4>
-                <p>Selecciona Centro </p>
+            
+            <form action ="./php/">
+                <p>Selecciona Centro</p>
                     <select name ="select" class="field">
                         <option value="centro1">Centro 1</option>
                         <option value= "centro2">Centro 2</option>
                     </select>
-               
-                <p>Altas:</p>
-                    <input type= "number" name="Altas" class="field" size="15" maxlength="30"/>
                 
-                <p>Bajas: </p>
-                    <input type= "number" name="bajas" class="field" size="15" maxlenght="30"/>
+                <p>Jornada:</p>
+                    <input type= "number" class="field" name="Jornada" size="15" maxlength="30"/>
                 
-                <p>Num empleados: </p>
-                    <input type= "number" name="numempleados" class="field" size="15" maxlenght="30"/>
+                <p>Identificador empleado: </p>
+                    <input type= "text" class= "field" name="idEmpleado" size="15" maxlenght="30"/>
                 <p></p>
-                <input type="submit" value="Submit" class="botton" />
+
+                <input type="submit" vlass ="field" name="enviar" value="Submit" />
+                    
             </form>
-        
+    
     </body>
 </html>
