@@ -8,6 +8,8 @@ form{
 	width: 300px;
 	padding:20px;
 	background-color: rgba(7, 101, 138, 0.5);
+	margin-bottom: 10px;
+
 }
 input,select{
 	

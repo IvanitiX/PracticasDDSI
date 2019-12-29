@@ -36,7 +36,7 @@
                 $destino = "../RRHH/RRHH.html" ;
             break ;
             case 'Inventario' :
-                $destino = "../RRHH/RRHH.html" ;
+                $destino = "../Inventario/inventario.php" ;
             break ;
             case 'Contabilidad' :
                 $destino = "../RRHH/RRHH.html" ;

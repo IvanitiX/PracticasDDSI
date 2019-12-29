@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-12-2019 a las 19:45:35
+-- Tiempo de generación: 29-12-2019 a las 22:37:50
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.1.33
 
@@ -40,7 +40,8 @@ CREATE TABLE `centro` (
 --
 
 INSERT INTO `centro` (`idCentro`, `Altas`, `Bajas`, `NumEmpleados`) VALUES
-('C01', 0, 0, 2);
+('C01', 0, 0, 2),
+('CO2', 1, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -89,9 +90,9 @@ INSERT INTO `inicio` (`Usuario`, `Contrasena`, `Rol`) VALUES
 --
 
 CREATE TABLE `maquinas` (
+  `IdCentro` varchar(3) NOT NULL,
   `IdMaquina` int(11) NOT NULL,
   `IdInstancia` int(11) NOT NULL,
-  `IdCentro` varchar(3) NOT NULL,
   `Descripcion` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -99,8 +100,10 @@ CREATE TABLE `maquinas` (
 -- Volcado de datos para la tabla `maquinas`
 --
 
-INSERT INTO `maquinas` (`IdMaquina`, `IdInstancia`, `IdCentro`, `Descripcion`) VALUES
-(1, 1, 'C01', 'Cinta de correr');
+INSERT INTO `maquinas` (`IdCentro`, `IdMaquina`, `IdInstancia`, `Descripcion`) VALUES
+('C01', 1, 1, 'Cinta de correr'),
+('C01', 1, 2, 'Cinta de Correr'),
+('CO2', 2, 1, 'Bicicleta Elíptica');
 
 -- --------------------------------------------------------
 
@@ -149,7 +152,7 @@ ALTER TABLE `inicio`
 -- Indices de la tabla `maquinas`
 --
 ALTER TABLE `maquinas`
-  ADD PRIMARY KEY (`IdMaquina`,`IdInstancia`,`IdCentro`);
+  ADD PRIMARY KEY (`IdCentro`,`IdInstancia`,`IdMaquina`) USING BTREE;
 
 --
 -- Indices de la tabla `productos`

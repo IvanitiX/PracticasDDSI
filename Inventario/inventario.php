@@ -1,3 +1,7 @@
+<?php
+    include '../php/controlusuario.php' ;
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,38 +15,40 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  
+    <title>ITFit > Inventario</title>
     </head>
+
     <body>
         <nav class="navbar sticky-top navbar-expand-lg navbar-dark header">
-        <a href="#" class="navbar-brand mr-auto">
+        <a href="../inicio.html" class="navbar-brand mr-auto">
             <img src="../img/Logo.png" alt="ITFit" width="64" height="64"/>
         </a>
         <span class="areagestion navbar-text">
             <ul class="navbar-nav">
                 <li class="nav-link">
-                    <a class ="enlace" href="login.html">Área de gestión</a>
-                    <a class ="enlace" href="../RRHH/RRHH.html">Recursos Humanos</a>
+                    <a class ="enlace" href="#">Inventario</a>
+                </li>
+                <li class="nav-link">
+                    <a class ="enlace" href="../php/logout.php">Cerrar Sesión</a>
                 </li>
             </ul>
         </span>
     </nav>
     
-        <div class="vertical-menu">
-            <a href="" class="active">Recursos Humanos</a>
-            <a href="jornada.html">Asignar Jornada laboral</a>
-            <a href="InformegeneralRRHH.html">Calcular Informe geneal RRHH</a>
-            <a href="dardealta.html">Dar de alta empleado</a>
-            <a href="despedir.html">Despedir empleado</a>
-            <a href="asignarcurso.html">Asignar curso</a>
-            <a href="bajaempleado.html">Dar de baja empleado</a>
-            <a href="solictarbaja.html">Solicitar baja</a>
+    <div class="inicio container">
+        <div class="row">
+            <div class="vertical-menu col-lg-2 col-sm-3">
+                <a href="#" class="active">Inventario</a>
+                <a href="./maquinas.php">Máquinas</a>
+                <a href="./productos.php">Productos</a>
+                <a href="./incidencias.php">Incidencias</a>
+            </div>
+            <div class="inicio col-lg-6 col-sm-6">
+                <h1>Bienvenido a Inventario</h1>
+                <h2>Selecciona una función</h2>
+            </div>
         </div>
-    
-        <div id="form">
-            <h4>HOLA</h4>
-        </div>
-       
+    </div>
     </body>
        
 
