@@ -33,43 +33,39 @@
 
         </head>
 
+        <body>
+           
+     <div class="vertical-menu">
+        <a href="./RRHH.html">Recursos Humanos</a>
+        <a href="./jornada.html" >Asignar Jornada laboral</a>
+        <a href="./InformegeneralRRHH.html" class="active">Calcular Informe geneal RRHH</a>
+        <a href="./dardealta.html">Dar de alta empleado</a>
+        <a href="./despedir.html">Despedir empleado</a>
+        <a href="./asignarcurso.html">Asignar curso</a>
+        <a href="./bajaempleado.html">Dar de baja empleado</a>
+    </div>
     <body>
-
-        <div class="inicio container">
-            <div class="row">
-                <div class="vertical-menu col-lg-2 col-sm-3">
-                    <a href="" class="active">Recursos Humanos</a>
-                    <a href="./jornada.html">Asignar Jornada laboral</a>
-                    <a href="./InformegeneralRRHH.html">Calcular Informe geneal RRHH</a>
-                    <a href="./dardealta.html">Dar de alta empleado</a>
-                    <a href="./despedir.html">Despedir empleado</a>
-                    <a href="./asignarcurso.html">Asignar curso</a>
-                    <a href="./bajaempleado.html">Dar de baja empleado</a>
-                </div>
     
-                <div class="inicio col-lg-6 col-sm-6 offset-sm-3">
-                    <form action ="./php/" class="formrrhh">
-                        <h4>Calcular informe general recursos humanos</h4>
-                        <p>Selecciona Centro </p>
-                            <select name ="select" class="field">
-                                <option value="centro1">Centro 1</option>
-                                <option value= "centro2">Centro 2</option>
-                            </select>
-                       
-                        <p>Altas:</p>
-                            <input type= "number" name="Altas" class="field" size="15" maxlength="30"/>
-                        
-                        <p>Bajas: </p>
-                            <input type= "number" name="bajas" class="field" size="15" maxlenght="30"/>
-                        
-                        <p>Num empleados: </p>
-                            <input type= "number" name="numempleados" class="field" size="15" maxlenght="30"/>
-                        <p></p>
-                        <input type="submit" value="Submit" class="botton" />
-                    </form>
-                </div>
-            </div>
-        </div>
+        
+            <form action ="./php/" class="formrrhh">
+                <h4>Calcular informe general recursos humanos</h4>
+                <p>Selecciona Centro </p>
+                    <select name ="select" class="field">
+                        <option value="centro1">Centro 1</option>
+                        <option value= "centro2">Centro 2</option>
+                    </select>
+               
+                <p>Altas:</p>
+                    <input type= "number" name="Altas" class="field" size="15" maxlength="30"/>
+                
+                <p>Bajas: </p>
+                    <input type= "number" name="bajas" class="field" size="15" maxlenght="30"/>
+                
+                <p>Num empleados: </p>
+                    <input type= "number" name="numempleados" class="field" size="15" maxlenght="30"/>
+                <p></p>
+                <input type="submit" value="Submit" class="botton" />
+            </form>
         
     </body>
 </html>

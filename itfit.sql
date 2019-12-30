@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-12-2019 a las 22:59:18
+-- Tiempo de generación: 29-12-2019 a las 22:37:50
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.1.33
 
@@ -50,13 +50,13 @@ INSERT INTO `centro` (`idCentro`, `Altas`, `Bajas`, `NumEmpleados`) VALUES
 --
 
 CREATE TABLE `incidencias` (
-  `IdCentro` varchar(3) NOT NULL,
-  `IdMaquina` int(3) NOT NULL,
-  `IdInstancia` int(11) NOT NULL,
+  `IdMaquina` int(11) DEFAULT NULL,
+  `IdInstancia` int(11) DEFAULT NULL,
+  `IdCentro` varchar(3) DEFAULT NULL,
   `IdIncidencia` int(11) NOT NULL,
   `Descripcion` varchar(100) NOT NULL,
   `FechaIncidencia` date NOT NULL,
-  `Estado` varchar(30) NOT NULL CHECK (`Estado` in ('Enviada','Inspeccionando','Arreglando','Completada'))
+  `Estado` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -91,7 +91,7 @@ INSERT INTO `inicio` (`Usuario`, `Contrasena`, `Rol`) VALUES
 
 CREATE TABLE `maquinas` (
   `IdCentro` varchar(3) NOT NULL,
-  `IdMaquina` int(3) NOT NULL,
+  `IdMaquina` int(11) NOT NULL,
   `IdInstancia` int(11) NOT NULL,
   `Descripcion` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -102,7 +102,8 @@ CREATE TABLE `maquinas` (
 
 INSERT INTO `maquinas` (`IdCentro`, `IdMaquina`, `IdInstancia`, `Descripcion`) VALUES
 ('C01', 1, 1, 'Cinta de correr'),
-('C01', 1, 2, 'Cinta de Correr');
+('C01', 1, 2, 'Cinta de Correr'),
+('CO2', 2, 1, 'Bicicleta Elíptica');
 
 -- --------------------------------------------------------
 
@@ -122,8 +123,7 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`IdProducto`, `Descripcion`, `Cantidad`, `Precio`) VALUES
-(1, 'Whey', 20, 35),
-(2, 'LCarnitina', 49, 10);
+(1, 'Whey', 20, 35);
 
 --
 -- Índices para tablas volcadas
@@ -139,9 +139,8 @@ ALTER TABLE `centro`
 -- Indices de la tabla `incidencias`
 --
 ALTER TABLE `incidencias`
-  ADD PRIMARY KEY (`IdCentro`,`IdMaquina`,`IdInstancia`,`IdIncidencia`) USING BTREE,
-  ADD KEY `IdMaquina` (`IdMaquina`),
-  ADD KEY `IdInstancia` (`IdInstancia`);
+  ADD PRIMARY KEY (`IdIncidencia`),
+  ADD UNIQUE KEY `IdMaquina` (`IdMaquina`,`IdInstancia`,`IdCentro`);
 
 --
 -- Indices de la tabla `inicio`
@@ -153,33 +152,13 @@ ALTER TABLE `inicio`
 -- Indices de la tabla `maquinas`
 --
 ALTER TABLE `maquinas`
-  ADD PRIMARY KEY (`IdCentro`,`IdInstancia`,`IdMaquina`) USING BTREE,
-  ADD KEY `IdMaquina` (`IdMaquina`),
-  ADD KEY `IdInstancia` (`IdInstancia`);
+  ADD PRIMARY KEY (`IdCentro`,`IdInstancia`,`IdMaquina`) USING BTREE;
 
 --
 -- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
   ADD PRIMARY KEY (`IdProducto`);
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `incidencias`
---
-ALTER TABLE `incidencias`
-  ADD CONSTRAINT `incidencias_ibfk_1` FOREIGN KEY (`IdCentro`) REFERENCES `maquinas` (`IdCentro`),
-  ADD CONSTRAINT `incidencias_ibfk_2` FOREIGN KEY (`IdMaquina`) REFERENCES `maquinas` (`IdMaquina`),
-  ADD CONSTRAINT `incidencias_ibfk_3` FOREIGN KEY (`IdInstancia`) REFERENCES `maquinas` (`IdInstancia`);
-
---
--- Filtros para la tabla `maquinas`
---
-ALTER TABLE `maquinas`
-  ADD CONSTRAINT `maquinas_ibfk_1` FOREIGN KEY (`IdCentro`) REFERENCES `centro` (`idCentro`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

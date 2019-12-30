@@ -37,42 +37,35 @@
             </span>
         </nav>
     
+     <div class="vertical-menu">
+        <a href="./RRHH.html">Recursos Humanos</a>
+        <a href="./jornada.html" >Asignar Jornada laboral</a>
+        <a href="./InformegeneralRRHH.html">Calcular Informe geneal RRHH</a>
+        <a href="./dardealta.html">Dar de alta empleado</a>
+        <a href="./despedir.html">Despedir empleado</a>
+        <a href="./asignarcurso.html"class="active">Asignar curso</a>
+        <a href="./bajaempleado.html">Dar de baja empleado</a>
+    </div>
     <body>
-        <div class="inicio container">
-            <div class="row">
-                <div class="vertical-menu col-lg-2 col-sm-3">
-                    <a href="" class="active">Recursos Humanos</a>
-                    <a href="./jornada.html">Asignar Jornada laboral</a>
-                    <a href="./InformegeneralRRHH.html">Calcular Informe geneal RRHH</a>
-                    <a href="./dardealta.html">Dar de alta empleado</a>
-                    <a href="./despedir.html">Despedir empleado</a>
-                    <a href="./asignarcurso.html">Asignar curso</a>
-                    <a href="./bajaempleado.html">Dar de baja empleado</a>
-                </div>
-    
-                <div class="inicio col-lg-6 col-sm-6 offset-sm-3">
-                    <form action="./php/" class="formrrhh">
-                        <h4>Asignar curso</h4>
-                        <p>Fecha del curso:</p>
-                            <input type="date" name="fecha" class="field" size="20" maxlength="10"/>
+        <form action="./php/" class="formrrhh">
+            <h4>Asignar curso</h4>
+            <p>Fecha del curso:</p>
+                <input type="date" name="fecha" class="field" size="20" maxlength="10"/>
+
+             
+            <p>Curso:</p>
+            <select name ="select" class="field">
+                <option value="1">Tecnodeporte</option>
+                <option value= "2">fit it resources </option>
+            </select>
             
-                         
-                        <p>Curso:</p>
-                        <select name ="select" class="field">
-                            <option value="1">Tecnodeporte</option>
-                            <option value= "2">fit it resources </option>
-                        </select>
-                        
-                        <p>Duracion:  </p>
-                            <input type="number" name="duration" class="field" size="3" maxlength="30"/>
-                        
-                        <p>idEmpleado:</p>
-                            <input type="text" name="idEmpleado" size="20" class="field" maxlength="8"/>
+            <p>Duracion:  </p>
+                <input type="number" name="duration" class="field" size="3" maxlength="30"/>
             
-                        <p></p>
-                            <input type="submit" value="Submit" class="botton" />
-                    </form>
-                </div>
-            </div>
-        </div>
+            <p>idEmpleado:</p>
+                <input type="text" name="idEmpleado" size="20" class="field" maxlength="8"/>
+
+            <p></p>
+                <input type="submit" value="Submit" class="botton" />
+        </form>
     </body>
