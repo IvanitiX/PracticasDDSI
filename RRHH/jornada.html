@@ -37,35 +37,41 @@
             </span>
         </nav>
     
-     <div class="vertical-menu">
-        <a href="./RRHH.html">Recursos Humanos</a>
-        <a href="./jornada.html" class="active">Asignar Jornada laboral</a>
-        <a href="./InformegeneralRRHH.html">Calcular Informe geneal RRHH</a>
-        <a href="./dardealta.html">Dar de alta empleado</a>
-        <a href="./despedir.html">Despedir empleado</a>
-        <a href="./asignarcurso.html">Asignar curso</a>
-        <a href="./bajaempleado.html">Dar de baja empleado</a>
-    </div>
-    <body>
-            
-            <form action ="../php/RRHH/jornada.php" method="post">
-                <h4>Asignar jornada laboral</h4>
-                <p>Selecciona Centro</p>
-                    <select name ="select" class="field">
-                        <option value="centro1">Centro 1</option>
-                        <option value= "centro2">Centro 2</option>
-                    </select>
-                
-                <p>Jornada:</p>
-                    <input type= "number" class="field" name="Jornada" size="15" maxlength="30"/>
-                
-                <p>Identificador empleado: </p>
-                    <input type= "text" class= "field" name="idEmpleado" size="15" maxlenght="30"/>
-                <p></p>
-
-                <input type="submit" class ="botton" name="enviar" value="Submit" />
-                    
-            </form>
+        <body>
+        <div class="inicio container">
+            <div class="row">
+                <div class="vertical-menu col-lg-2 col-sm-3">
+                    <a href="" class="active">Recursos Humanos</a>
+                    <a href="./jornada.html">Asignar Jornada laboral</a>
+                    <a href="./InformegeneralRRHH.html">Calcular Informe geneal RRHH</a>
+                    <a href="./dardealta.html">Dar de alta empleado</a>
+                    <a href="./despedir.html">Despedir empleado</a>
+                    <a href="./asignarcurso.html">Asignar curso</a>
+                    <a href="./bajaempleado.html">Dar de baja empleado</a>
+                </div>
+    
+                <div class="inicio col-lg-6 col-sm-6 offset-sm-3">
+                    <form action ="../php/RRHH/jornada.php" method="post">
+                        <h4>Asignar jornada laboral</h4>
+                        <p>Selecciona Centro</p>
+                            <select name ="select" class="field">
+                                <option value="centro1">Centro 1</option>
+                                <option value= "centro2">Centro 2</option>
+                            </select>
+                        
+                        <p>Jornada:</p>
+                            <input type= "number" class="field" name="Jornada" size="15" maxlength="30"/>
+                        
+                        <p>Identificador empleado: </p>
+                            <input type= "text" class= "field" name="idEmpleado" size="15" maxlenght="30"/>
+                        <p></p>
+        
+                        <input type="submit" class ="botton" name="enviar" value="Submit" />
+                            
+                    </form>
+                </div>
+            </div>
+        </div>
     
     </body>
 </html>

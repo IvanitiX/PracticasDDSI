@@ -29,16 +29,20 @@
         </span>
     </nav>
 
-    <div class="fondo container">
+    <div class="fondo">
         <div class="container login">
-            <form action="../php/login.php" method="post">
-                <p>Usuario :</p>
-                <input type="text" name="usuario" maxlength="30" required>
-                <p>Contraseña :</p>
-                <input type="password" name="passwd" maxlength="30" required>
-                <p></p>
-                <input type="submit" class="botton" value="Iniciar Sesión">
-            </form>
+            <div class="row">
+                <div class="col-sm-12">
+                    <form action="../php/login.php" method="post">
+                        <p>Usuario :</p>
+                        <input type="text" name="usuario" maxlength="30" required>
+                        <p>Contraseña :</p>
+                        <input type="password" name="passwd" maxlength="30" required>
+                        <p></p>
+                        <input type="submit" class="botton" value="Iniciar Sesión">
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </body>

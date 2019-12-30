@@ -40,12 +40,12 @@
         <div class="row">
             <div class="vertical-menu col-lg-2 col-sm-3">
                 <a href="./inventario.php">Inventario</a>
-                <a href="#" class="active">Máquinas</a>
+                <a href="./maquinas.php">Máquinas</a>
                 <a href="./productos.php">Productos</a>
-                <a href="./incidencias.php">Incidencias</a>
+                <a href="#" class="active">Incidencias</a>
             </div>
             <div class="inicio col-lg-6 col-sm-6">
-                <h1>Inventario > Máquinas</h1>
+                <h1>Inventario > Incidencias</h1>
             </div>
         </div>
     </div>
@@ -53,8 +53,8 @@
     <div class="row">
 
         <div class="col-lg-4 col-sm-6">
-            <form action="../php/Inventario/anadirmaquina.php" method="post">
-                <h4>Añadir máquina</h4>
+            <form action="../php/Inventario/anadirincidencia.php" method="post">
+                <h4>Añadir incidencia</h4>
                 <p>Centro:</p>
                 <select name="IdCentro" class="field">
                     <?php
@@ -68,20 +68,24 @@
                     ?>
                 </select>
                 <p>Identificador de máquina:</p>
-                <input type="text" name="IdMaquina" size="20" class="field" maxlength="8"/>
+                <input type="text" name="IdMaquina" size="20" class="field" maxlength="30"/>
                 <p>Identificador de instancia de máquina:</p>
-                <input type="text" name="IdInstancia" size="20" class="field" maxlength="8"/>
+                <input type="text" name="IdInstancia" size="20" class="field" maxlength="30"/>
+                <p>Identificador de incidencia:</p>
+                <input type="text" name="IdIncidencia" size="20" class="field" maxlength="30"/>
                 <p>Descripcion:</p>
-                <input type="text" name="Descripcion" size="20" class="field" maxlength="8"/>
+                <input type="text" name="Descripcion" size="20" class="field" maxlength="30"/>
+                <p>Fecha:</p>
+                <input type="date" name="FechaIncidencia" class="field">
                 <input type="submit" class="botton" value="Añadir">
             </form>
         </div>
 
         <div class="col-lg-4 col-sm-6">
-            <form action="../php/Inventario/alterarmaquina.php" method="post">
-                <h4>Editar datos de máquina</h4>
-                <p>Centro de origen:</p>
-                <select name="IdCentroOrig" class="field">
+            <form action="../php/Inventario/alterarincidencia.php" method="post">
+                <h4>Editar estado de incidencia</h4>
+                <p>Centro:</p>
+                <select name="IdCentro" class="field">
                     <?php
                         include "../php/config_bbdd.php" ;
                         $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE) or die ("<h5>No puedo conectarme a la BD.</h5>");
@@ -92,35 +96,26 @@
                         }
                     ?>
                 </select>
-                <p>Identificador de máquina original:</p>
-                <input type="text" name="IdMaquinaOrig" size="20" class="field" maxlength="8"/>
-                <p>Identificador de instancia de máquina original:</p>
-                <input type="text" name="IdInstanciaOrig" size="20" class="field" maxlength="8"/>
-                <p>Centro Nuevo:</p>
-                <select name="IdCentroNew" class="field">
-                    <?php
-                        include "../php/config_bbdd.php" ;
-                        $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE) or die ("<h5>No puedo conectarme a la BD.</h5>");
-                        $consulta = "Select IdCentro from Centro" ;
-                        $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
-                        while($columna = mysqli_fetch_array($resultado)){
-                            echo "<option value=" . $columna['IdCentro'] . "> Centro " . $columna['IdCentro'] . "</option>" ;
-                        }
-                    ?>
+                <p>Identificador de máquina:</p>
+                <input type="text" name="IdMaquina" size="20" class="field" maxlength="30"/>
+                <p>Identificador de instancia de máquina:</p>
+                <input type="text" name="IdInstancia" size="20" class="field" maxlength="30"/>
+                <p>Identificador de incidencia:</p>
+                <input type="text" name="IdIncidencia" size="20" class="field" maxlength="30"/>
+                <p>Estado:</p>
+                <select name="Estado" class="field">
+                    <option value="Enviada">Enviada</option>
+                    <option value="Inspeccionando">Inspeccionando</option>
+                    <option value="Arreglando">Arreglando</option>
+                    <option value="Completada">Completada</option>
                 </select>
-                <p>Identificador de máquina nuevo:</p>
-                <input type="text" name="IdMaquinaNew" size="20" class="field" maxlength="8"/>
-                <p>Identificador de instancia de máquina nuevo:</p>
-                <input type="text" name="IdInstanciaNew" size="20" class="field" maxlength="8"/>
-                <p>Descripcion:</p>
-                <input type="text" name="Descripcion" size="20" class="field" maxlength="8"/>
                 <input type="submit" class="botton" value="Modificar">
             </form>
         </div>
 
         <div class="col-lg-4 col-sm-6">
-            <form action="../php/Inventario/eliminarmaquina.php" method="post">
-                <h4>Eliminar máquina</h4>
+            <form action="../php/Inventario/eliminarincidencia.php" method="post">
+                <h4>Eliminar incidencia</h4>
                 <p>Centro:</p>
                 <select name="IdCentro" class="field">
                     <?php
@@ -137,11 +132,43 @@
                 <input type="text" name="IdMaquina" size="20" class="field" maxlength="8"/>
                 <p>Identificador de instancia de máquina:</p>
                 <input type="text" name="IdInstancia" size="20" class="field" maxlength="8"/>
+                <p>Identificador de incidencia:</p>
+                <input type="text" name="IdIncidencia" size="20" class="field" maxlength="30"/>
                 <input type="submit" class="botton" value="Eliminar">
             </form>
         </div>
 
     </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <form>
+            <h3>Lista de productos</h3>
+            <?php
+                $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE) or die ("<h5>No puedo conectarme a la BD.</h5>");
+                $consulta = "Select * from Incidencias Order By Estado" ;
+                $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+                echo "<table borde='2'>";
+                echo "<tr>";
+                echo "<th>Id.Centro</th>";
+                echo "<th>Id.Maquina</th>";
+                echo "<th>Id.Instancia</th>";
+                echo "<th>Id.Incidencia</th>";
+                echo "<th>Descripción</th>";
+                echo "<th>Fecha</th>";
+                echo "<th>Estado</th>";
+                echo "</tr>";
+                while($columna = mysqli_fetch_array($resultado)){
+                    echo "<tr>";
+	                echo "<td>" . $columna['IdCentro'] . "</td><td>" . $columna['IdMaquina'] . "</td><td>" . $columna['IdInstancia'] ."</td><td>" . $columna['IdIncidencia'] ."</td><td>" . $columna['Descripcion'] . "</td><td>" . $columna['FechaIncidencia'] ."</td><td>" . $columna['Estado'] . "</td>";
+	                echo "</tr>";
+                }
+                echo "</table>";
+            ?>
+        </form>
+        </div>
+    </div>
+
     </body>
        
 

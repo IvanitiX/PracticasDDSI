@@ -1,8 +1,6 @@
 
 form{
 	position: relative;
-	top:-500px;
-	left:-150px;
 	margin:0 auto;
 	font-size: 0.8em;
 	border-radius: 10px;
@@ -29,5 +27,3 @@ input,select{
 	background-color: rgba(51, 199, 14, 0.993);
 	
 }
-
-.formrrhh{}

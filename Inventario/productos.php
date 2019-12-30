@@ -53,9 +53,9 @@
     <div class="row">
 
         <div class="col-lg-4 col-sm-6">
-            <form action="../php/Inventario/anadirproducto.php" method="post">
+            <form action="../php/Inventario/anadirproducto.php" method="post" class="forminv">
                 <h4>Añadir producto</h4>
-                <p>Identificador de máquina:</p>
+                <p>Identificador de producto:</p>
                 <input type="text" name="IdProducto" size="20" class="field" maxlength="8"/>
                 <p>Descripcion:</p>
                 <input type="text" name="Descripcion" size="20" class="field" maxlength="30"/>
