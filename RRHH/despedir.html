@@ -34,25 +34,30 @@
         </head>
 
         <body>
-           
-     <div class="vertical-menu">
-        <a href="./RRHH.html">Recursos Humanos</a>
-        <a href="./jornada.html" >Asignar Jornada laboral</a>
-        <a href="./InformegeneralRRHH.html" >Calcular Informe geneal RRHH</a>
-        <a href="./dardealta.html" >Dar de alta empleado</a>
-        <a href="./despedir.html"class="active">Despedir empleado</a>
-        <a href="./asignarcurso.html">Asignar curso</a>
-        <a href="./bajaempleado.html">Dar de baja empleado</a>
-    </div>
-
-
-    <body>
-        <form action="./php/" class="formrrhh">
-            <h4>Despedir empleado</h4>
-            <p>idEmpleado:</p>
-                <input type="text" name="idEmpleado" class="field" size="20" maxlength="8"/>
-                <p></p>
-                <input type="submit" value="Submit" class="botton" />
-
-        </form>
-    </body>
+            <div class="inicio container">
+                <div class="row">
+                    <div class="vertical-menu col-lg-2 col-sm-3">
+                        <a href="" class="active">Recursos Humanos</a>
+                        <a href="./jornada.html">Asignar Jornada laboral</a>
+                        <a href="./InformegeneralRRHH.html">Calcular Informe geneal RRHH</a>
+                        <a href="./dardealta.html">Dar de alta empleado</a>
+                        <a href="./despedir.html">Despedir empleado</a>
+                        <a href="./asignarcurso.html">Asignar curso</a>
+                        <a href="./bajaempleado.html">Dar de baja empleado</a>
+                    </div>
+        
+                    <div class="inicio col-lg-6 col-sm-6">
+                        <form action="./php/" class="formrrhh">
+                            <h4>Despedir empleado</h4>
+                            <p>idEmpleado:</p>
+                                <input type="text" name="idEmpleado" class="field" size="20" maxlength="8"/>
+                                <p></p>
+                                <input type="submit" value="Submit" class="botton" />
+                
+                        </form>
+                
+                    </div>
+                </div>
+            </div>
+        
+        </body>

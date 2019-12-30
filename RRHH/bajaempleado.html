@@ -37,25 +37,31 @@
             </span>
         </nav>
     
-     <div class="vertical-menu">
-        <a href="./RRHH.html">Recursos Humanos</a>
-        <a href="./jornada.html" >Asignar Jornada laboral</a>
-        <a href="./InformegeneralRRHH.html">Calcular Informe geneal RRHH</a>
-        <a href="./dardealta.html">Dar de alta empleado</a>
-        <a href="./despedir.html">Despedir empleado</a>
-        <a href="./asignarcurso.html">Asignar curso</a>
-        <a href="./bajaempleado.html"class="active">Dar de baja empleado</a>
-    </div>
-    <body>
-        <form action="./php/" class="formrrhh">
-            <h4>Dar de baja a empleado</h4>
-            <p>Fecha de vencimiento:</p>
-            <input type="datetime" name="fecha" class="field" size="20" maxlength="10"/>
-            <p>idEmpleado</p>
-            <input type="text" name="idEmpleado" size="20" class="field" maxlength="8"/>
-            <p></p>
-            <input type="submit" value="Submit" class="botton" />
+        <div class="inicio container">
+            <div class="row">
+                <div class="vertical-menu col-lg-2 col-sm-3">
+                    <a href="" class="active">Recursos Humanos</a>
+                    <a href="./jornada.html">Asignar Jornada laboral</a>
+                    <a href="./InformegeneralRRHH.html">Calcular Informe geneal RRHH</a>
+                    <a href="./dardealta.html">Dar de alta empleado</a>
+                    <a href="./despedir.html">Despedir empleado</a>
+                    <a href="./asignarcurso.html">Asignar curso</a>
+                    <a href="./bajaempleado.html">Dar de baja empleado</a>
+                </div>
+    
+                <div class="inicio col-lg-6 col-sm-6 offset-sm-3">
+                    <form action="./php/" class="formrrhh">
+                        <h4>Dar de baja a empleado</h4>
+                        <p>Fecha de vencimiento:</p>
+                        <input type="datetime" name="fecha" class="field" size="20" maxlength="10"/>
+                        <p>idEmpleado</p>
+                        <input type="text" name="idEmpleado" size="20" class="field" maxlength="8"/>
+                        <p></p>
+                        <input type="submit" value="Submit" class="botton" />
+            
+                    </form>
+                </div>
+            </div>
+        </div>
 
-        </form>
-
-    </body>
+        </body>
