@@ -1,6 +1,8 @@
 
 form{
 	position: relative;
+	top:-500px;
+	left:-150px;
 	margin:0 auto;
 	font-size: 0.8em;
 	border-radius: 10px;
@@ -28,6 +30,4 @@ input,select{
 	
 }
 
-.formrrhh{
-	margin-top: -20% ;
-}
+.formrrhh{}

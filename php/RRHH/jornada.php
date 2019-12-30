@@ -1,3 +1,7 @@
+<?php
+    
+?>
+
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -21,35 +25,62 @@
             
         </style>
 
-        </head>
+  
 <?php 
+      $DB_SERVER = "localhost";
+      $DB_USERNAME = "root";
+      $DB_PASSWORD = "";
+      $DB_DATABASE = "itfit";
+     
+   $db = mysqli_connect($DB_SERVER,$DB_USERNAME,$DB_PASSWORD,$DB_DATABASE) or die ("No puedo conectarme a la BD.");
     $centro = $jornada = $idEmpleado = "";
     $centroerr = $jornadaerr = $idEmpleadoerr = "";
+
+    $array = array(
+        "centro"=> "false",
+        "jornada"=> "false",
+        "empl" => "false",
+    );
+
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         if(empty($_POST["select"])){
             $centroerr = "Campo obligatorio";
+            
         }else{
             $centro = $_POST["select"];
+            $array["centro"] = "true";
+
 
         }
         if(empty($_POST["Jornada"])){
             $jornadaerr = "Campo obligatorio";
         }else{
             $jornada = $_POST["Jornada"];
+            $array["jornada"] = "true";
+
         }
 
         if(empty($_POST["idEmpleado"])){
             $idEmpleadoerr = "Campo obligatorio";
         }else{
             $idEmpleado =$_POST["idEmpleado"];
+            $array["empl"] = "true";
+
         }
         
+        if($array["centro"] == "true" && $array["empl"] == "true" &&  $array["jornada"] = "true"  ){
+
+            
+        }
         
-       
+        //echo "<meta http-equiv=\"refresh\" content=\"1 ; url=http://localhost:8081/php/RRHH/jornada.php\">";
+
     }
  
 ?>
-
+      </head>
+<?php
+?>
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark header">
             <a href="../../inicio.html" class="navbar-brand mr-auto">
                 <img src="../../img/Logo.png" alt="ITFit" width="64" height="64"/>
@@ -75,7 +106,7 @@
     </div>
     <body>
             
-            <form action ="../php/RRHH/jornada.php" method="post">
+            <form action ="#" method="post">
                 <h4>Asignar jornada laboral</h4>
                 <p><span class="error">* Todos los campos son obligatorios</span></p>
                 <p>Selecciona Centro</p>
