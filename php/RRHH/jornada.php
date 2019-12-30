@@ -69,8 +69,12 @@
         }
         
         if($array["centro"] == "true" && $array["empl"] == "true" &&  $array["jornada"] = "true"  ){
-
+            $consulta = "Update empeladostrabajan Set Jornada = '$jornada' Where centro = '$centro' and idEmpleado = '$idEmpleado' " ;
+            $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
             
+          
+            if($resultado > 0) echo "¡Jornada asignada!";
+            else echo "No se ha asigando jornada" ;
         }
         
         //echo "<meta http-equiv=\"refresh\" content=\"1 ; url=http://localhost:8081/php/RRHH/jornada.php\">";
@@ -78,9 +82,8 @@
     }
  
 ?>
-      </head>
-<?php
-?>
+</head>
+
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark header">
             <a href="../../inicio.html" class="navbar-brand mr-auto">
                 <img src="../../img/Logo.png" alt="ITFit" width="64" height="64"/>
