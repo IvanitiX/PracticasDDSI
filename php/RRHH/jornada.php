@@ -94,39 +94,44 @@
                 </ul>
             </span>
         </nav>
+<body>
+    <div class="inicio container">
+        <div class="row">
+            <div class="vertical-menu col-lg-2 col-sm-3">
+                    <a href="../../RRHH/RRHH.html">Recursos Humanos</a>
+                    <a href="../../RRHH/jornada.html" class="active">Asignar Jornada laboral</a>
+                    <a href="../../RRHH/InformegeneralRRHH.html">Calcular Informe geneal RRHH</a>
+                    <a href="../../RRHH/dardealta.html">Dar de alta empleado</a>
+                    <a href="../../RRHH/despedir.html">Despedir empleado</a>
+                    <a href="../../RRHH/asignarcurso.html">Asignar curso</a>
+                    <a href="../../RRHH/bajaempleado.html">Dar de baja empleado</a>
+            </div>
     
-     <div class="vertical-menu">
-        <a href="../../RRHH/RRHH.html">Recursos Humanos</a>
-        <a href="../../RRHH/jornada.html" class="active">Asignar Jornada laboral</a>
-        <a href="../../RRHH/InformegeneralRRHH.html">Calcular Informe geneal RRHH</a>
-        <a href="../../RRHH/dardealta.html">Dar de alta empleado</a>
-        <a href="../../RRHH/despedir.html">Despedir empleado</a>
-        <a href="../../RRHH/asignarcurso.html">Asignar curso</a>
-        <a href="../../RRHH/bajaempleado.html">Dar de baja empleado</a>
-    </div>
-    <body>
-            
-            <form action ="#" method="post">
-                <h4>Asignar jornada laboral</h4>
-                <p><span class="error">* Todos los campos son obligatorios</span></p>
-                <p>Selecciona Centro</p>
-                    <select name ="select" class="field">
-                        <option value="centro1">Centro 1</option>
-                        <option value= "centro2">Centro 2</option>
-                    </select>
-               
-                <p>Jornada:</p>
-                    <input type= "number" class="field" name="Jornada" size="15" maxlength="30"/>
-                <span class = "error"><?php echo $jornadaerr;?></span>
-                <p></p>
-                <p>Identificador empleado: </p>
-                    <input type= "text" class= "field" name="idEmpleado" size="15" maxlenght="30"/>
-               
-                <span class = "error"><?php echo $idEmpleadoerr;?></span>
-                <p></p>
-                <input type="submit" class ="botton" name="enviar" value="Submit" />
+            <div class="inicio col-lg-6 col-sm-6 offset-sm-3">
+                    <form action ="#" method="post">
+                        <h4>Asignar jornada laboral</h4>
+                        <p><span class="error">* Todos los campos son obligatorios</span></p>
+                        <p>Selecciona Centro</p>
+                            <select name ="select" class="field">
+                                <option value="centro1">Centro 1</option>
+                                <option value= "centro2">Centro 2</option>
+                            </select>
                     
-            </form>
+                        <p>Jornada:</p>
+                            <input type= "number" class="field" name="Jornada" size="15" maxlength="30"/>
+                        <span class = "error"><?php echo $jornadaerr;?></span>
+                        <p></p>
+                        <p>Identificador empleado: </p>
+                            <input type= "text" class= "field" name="idEmpleado" size="15" maxlenght="30"/>
+                    
+                        <span class = "error"><?php echo $idEmpleadoerr;?></span>
+                        <p></p>
+                        <input type="submit" class ="botton" name="enviar" value="Submit" />
+                            
+                    </form>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
