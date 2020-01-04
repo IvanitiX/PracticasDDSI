@@ -28,8 +28,8 @@
       $DB_DATABASE = "itfit";
      
    $db = mysqli_connect($DB_SERVER,$DB_USERNAME,$DB_PASSWORD,$DB_DATABASE) or die ("No puedo conectarme a la BD.");
-    $nombre = $apellidos = $domicilio = $correo = $telefono = $dni = $puesto = $centro = "";
-    $centroerr = $nomerr = $apellidoerr = $domicilioerr = $correrr = $teleferr = $dnierr = $puestoerr  = "";
+    $idEmpleado=$nombre = $apellidos = $domicilio = $correo = $telefono = $dni = $puesto = $centro = "";
+    $err1=$err2= $centroerr = $nomerr = $apellidoerr = $domicilioerr = $correrr = $teleferr = $dnierr = $puestoerr  = "";
 
     $array = array(
         "centro"=> "false",
@@ -49,7 +49,7 @@
         }else{
             $centro = $_POST["select"];
             $array["centro"] = "true";
-
+            echo $centro;
 
         }
         if(empty($_POST["nombre"])){
@@ -57,7 +57,7 @@
         }else{
             $nombre = $_POST["nombre"];
             $array["nombre"] = "true";
-
+            echo $nombre;
         }
 
         if(empty($_POST["apellidos"])){
@@ -65,7 +65,7 @@
         }else{
             $apellidos =$_POST["apellidos"];
             $array["apellidos"] = "true";
-
+            echo $apellidos;
         }
 
         if(empty($_POST["domicilio"])){
@@ -73,7 +73,7 @@
         }else{
             $domicilio =$_POST["domicilio"];
             $array["domicilio"] = "true";
-
+            echo $domicilio;
         }
 
         if(empty($_POST["correo"])){
@@ -81,22 +81,35 @@
         }else{
             $correo =$_POST["correo"];
             $array["correo"] = "true";
-
+            echo $correo;
         }
 
         if(empty($_POST["telefono"])){
             $teleferr = "Campo obligatorio";
         }else{
             $telefono =$_POST["telefono"];
-            $array["telefono"] = "true";
+            if(strlen($telefono)!= 9){
+                $err2 = "Numero de caracteres erróneo";
+            }else{
+                $array["telefono"] = "true";               
+            }
+            echo $telefono;
+           
 
         }
         if(empty($_POST["DNI"])){
             $dnierr = "Campo obligatorio";
         }else{
             $dni =$_POST["DNI"];
-            $array["dni"] = "true";
-            $idEmpleado = substr($dni ,0,-1);
+            if(strlen($dni)!= 9){
+                $err1 = "Numero de caracteres erróneo";
+            }else{
+                $array["dni"] = "true";
+                $idEmpleado = substr($dni ,0,-1);
+            }
+
+            echo $dni;
+            
         }
 
         if(empty($_POST["puesto"])){
@@ -104,13 +117,20 @@
         }else{
             $puesto =$_POST["puesto"];
             $array["puesto"] = "true";
+            echo $puesto;
         }
         
         
         if($array["centro"] == "true" && $array["nombre"] == "true" &&  $array["apellidos"] = "true"  
         &&  $array["domicilio"] = "true" &&  $array["correo"] = "true" &&  $array["telfono"] = "true"
         &&  $array["dni"] = "true" &&  $array["puesto"] = "true"){
-
+            $null ="NULL";
+            $estado = "activo";
+            $consulta = "INSERT INTO empleadostrabajan values ($idEmpleado,$nombre,$apellidos,$domicilio,$centro,$correo,$telefono,$dni,$puesto,$null,$estado,$null)" ;
+            $resultado = mysqli_query( $db, $consulta ) or die ( " Algo ha ido mal en la consulta a la base de datos");
+            
+            if($resultado > 0) echo "¡Añadido! con identificador $idEmpleado";
+            else echo "No se ha añadido" ;
             
         }
         
@@ -178,11 +198,13 @@
                                    <p>Telefono:</p>
                                        <input type="text" name="telefono" class="field" size="20" maxlength="9"/>
                                        <span class = "error"><?php echo $teleferr;?></span>
-                  
+                                       <span class = "error"><?php echo $err2;?></span>
+
                                    
                                    <p>DNI:</p>
                                        <input type="text" name="DNI" size="20" class="field" maxlength="9"/>
                                        <span class = "error"><?php echo $dnierr;?></span>
+                                       <span class = "error"><?php echo $err1;?></span>
 
                                    
                                    <p>Puesto:</p>
@@ -195,8 +217,8 @@
                                    
                                    <p>Selecciona Centro </p>
                                        <select name ="select" class="field">
-                                           <option value="centro1">Centro 1</option>
-                                           <option value= "centro2">Centro 2</option>
+                                           <option value="001">Centro 1</option>
+                                           <option value= "002">Centro 2</option>
                                        </select>
                                        <span class = "error"><?php echo $centroerr;?></span>
 
