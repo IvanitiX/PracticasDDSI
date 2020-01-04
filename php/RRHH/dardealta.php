@@ -24,7 +24,7 @@
         <?php 
       $DB_SERVER = "localhost";
       $DB_USERNAME = "root";
-      $DB_PASSWORD = "";
+      $DB_PASSWORD = "ITFit";
       $DB_DATABASE = "itfit";
      
    $db = mysqli_connect($DB_SERVER,$DB_USERNAME,$DB_PASSWORD,$DB_DATABASE) or die ("No puedo conectarme a la BD.");
@@ -43,11 +43,11 @@
     );
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-        if(empty($_POST["select"])){
+        if(empty($_POST["IdCentro"])){
             $centroerr = "Campo obligatorio";
             
         }else{
-            $centro = $_POST["select"];
+            $centro = $_POST["IdCentro"];
             $array["centro"] = "true";
             echo $centro;
 
@@ -109,6 +109,7 @@
             }
 
             echo $dni;
+            echo "ID " . $idEmpleado ;
             
         }
 
@@ -125,16 +126,19 @@
         &&  $array["domicilio"] = "true" &&  $array["correo"] = "true" &&  $array["telfono"] = "true"
         &&  $array["dni"] = "true" &&  $array["puesto"] = "true"){
             $null ="NULL";
-            $estado = "activo";
-            $consulta = "INSERT INTO empleadostrabajan values ($idEmpleado,$nombre,$apellidos,$domicilio,$centro,$correo,$telefono,$dni,$puesto,$null,$estado,$null)" ;
+            $estado = 'activo';
+            $consulta = "INSERT INTO empleadostrabajan values ('$idEmpleado','$nombre','$apellidos','$domicilio','$centro','$correo','$telefono','$dni','$puesto',8,'$estado','Si')" ;
             $resultado = mysqli_query( $db, $consulta ) or die ( " Algo ha ido mal en la consulta a la base de datos");
             
-            if($resultado > 0) echo "¡Añadido! con identificador $idEmpleado";
+            if($resultado > 0) {
+                echo "¡Añadido! con identificador $idEmpleado";
+                $anadido = true ;
+            }
             else echo "No se ha añadido" ;
             
         }
         
-        //echo "<meta http-equiv=\"refresh\" content=\"1 ; url=http://localhost:8081/php/RRHH/jornada.php\">";
+        echo "<meta http-equiv=\"refresh\" content=\"1 ; url=http://localhost:8081/php/RRHH/jornada.php\">";
 
     }
  
@@ -174,7 +178,16 @@
                         <div class="inicio col-lg-6 col-sm-6 offset-sm-3">
                             <form action ="#" class="formrrhh" , method="post">
                                 <h4>Dar de alta empleado</h4>
-                                <p><span class="error">* Todos los campos son obligatorios</span></p>
+                                <?php
+                                    if ($anadido == true){
+                                        echo "<div class=\"alert alert-success\" role=\"alert\">
+                                        Añadido con éxito
+                                      </div>" ;
+                                    }
+                                    else{
+                                        echo "<p><span class=\"error\">* Todos los campos son obligatorios</span></p>" ;
+                                    }
+                                ?>
                                    <p>Nombre:</p>
                                        <input type="text" name="nombre" class="field" size="20" maxlength="10"/>
                                        <span class = "error"><?php echo $nomerr;?></span>
@@ -216,10 +229,16 @@
                    
                                    
                                    <p>Selecciona Centro </p>
-                                       <select name ="select" class="field">
-                                           <option value="001">Centro 1</option>
-                                           <option value= "002">Centro 2</option>
-                                       </select>
+                                   <select name="IdCentro" class="field">
+                                    <?php
+                                        $db = mysqli_connect($DB_SERVER,$DB_USERNAME,$DB_PASSWORD,$DB_DATABASE) or die ("No puedo conectarme a la BD.");
+                                        $consulta = "Select IdCentro from Centro" ;
+                                        $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+                                        while($columna = mysqli_fetch_array($resultado)){
+                                            echo "<option value=" . $columna['IdCentro'] . "> Centro " . $columna['IdCentro'] . "</option>" ;
+                                        }
+                                    ?>
+                                    </select>
                                        <span class = "error"><?php echo $centroerr;?></span>
 
                                        <p></p>

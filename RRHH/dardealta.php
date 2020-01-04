@@ -82,9 +82,16 @@
                                 
                                    
                                    <p>Selecciona Centro </p>
-                                       <select name ="select" class="field">
-                                           <option value="001">Centro1</option>
-                                           <option value= "002">Centro2</option>
+                                       <select name="IdCentro" class="field">
+                                            <?php
+                                                include "../php/config_bbdd.php" ;
+                                                $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE) or die ("<h5>No puedo conectarme a la BD.</h5>");
+                                                $consulta = "Select IdCentro from Centro" ;
+                                                $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+                                                while($columna = mysqli_fetch_array($resultado)){
+                                                    echo "<option value=" . $columna['IdCentro'] . "> Centro " . $columna['IdCentro'] . "</option>" ;
+                                                }
+                                            ?>
                                        </select>
                                        <p></p>
                                        <input type="submit" value="Submit" class="botton" />
