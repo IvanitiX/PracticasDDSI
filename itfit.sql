@@ -182,6 +182,31 @@ ALTER TABLE `maquinas`
   ADD CONSTRAINT `maquinas_ibfk_1` FOREIGN KEY (`IdCentro`) REFERENCES `centro` (`idCentro`);
 COMMIT;
 
+--
+--RECURSOS HUMANOS
+--
+CREATE TABLE  `empleadostrabajan`(
+`idEmpleado` varchar(8) NOT NULL, 
+`nombre` varchar(10) NOT NULL,
+`apellidos` varchar (30) NOT NULL,
+`domicilio` varchar(30) NOT NULL,
+`IdCentro` varchar(3) NOT NULL,
+`correo` varchar(100) NOT NULL,
+`Telefono` varchar(9) NOT NULL,
+`dni` varchar(9) NOT NULL,
+`Puesto` varchar(20) NOT NULL,
+`Jornada` INT DEFAULT NULL,
+`Estado` varchar(10) NOT NULL CHECK (`Estado` in ('Activo','Baja')),
+Formación varchar(20) DEFAULT NULL
+
+
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;;
+
+ALTER TABLE `empleadostrabjan`
+  ADD PRIMARY KEY (`IdEmpleado`) USING BTREE,
+  ADD CONSTRAINT `empleadostrabajan_ibfk_1` FOREIGN KEY (`IdCentro`) REFERENCES `centro` (`idCentro`);
+  
+---------------------------------------------------------------
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -24,11 +24,11 @@
         <?php 
       $DB_SERVER = "localhost";
       $DB_USERNAME = "root";
-      $DB_PASSWORD = "ITFit";
+      $DB_PASSWORD = "";
       $DB_DATABASE = "itfit";
      
    $db = mysqli_connect($DB_SERVER,$DB_USERNAME,$DB_PASSWORD,$DB_DATABASE) or die ("No puedo conectarme a la BD.");
-    $idEmpleado=$nombre = $apellidos = $domicilio = $correo = $telefono = $dni = $puesto = $centro = "";
+   $anadido= $idEmpleado=$nombre = $apellidos = $domicilio = $correo = $telefono = $dni = $puesto = $centro = "";
     $err1=$err2= $centroerr = $nomerr = $apellidoerr = $domicilioerr = $correrr = $teleferr = $dnierr = $puestoerr  = "";
 
     $array = array(
@@ -101,11 +101,12 @@
             $dnierr = "Campo obligatorio";
         }else{
             $dni =$_POST["DNI"];
+            $idEmpleado = substr($dni ,0,-1);
             if(strlen($dni)!= 9){
                 $err1 = "Numero de caracteres erróneo";
             }else{
                 $array["dni"] = "true";
-                $idEmpleado = substr($dni ,0,-1);
+               
             }
 
             echo $dni;
@@ -126,8 +127,8 @@
         &&  $array["domicilio"] = "true" &&  $array["correo"] = "true" &&  $array["telfono"] = "true"
         &&  $array["dni"] = "true" &&  $array["puesto"] = "true"){
             $null ="NULL";
-            $estado = 'activo';
-            $consulta = "INSERT INTO empleadostrabajan values ('$idEmpleado','$nombre','$apellidos','$domicilio','$centro','$correo','$telefono','$dni','$puesto',8,'$estado','Si')" ;
+            $estado = 'Activo';
+            $consulta = "INSERT INTO empleadostrabajan values ('$idEmpleado','$nombre','$apellidos','$domicilio','$centro','$correo','$telefono','$dni','$puesto',0,'$estado','No')" ;
             $resultado = mysqli_query( $db, $consulta ) or die ( " Algo ha ido mal en la consulta a la base de datos");
             
             if($resultado > 0) {
@@ -138,7 +139,7 @@
             
         }
         
-        echo "<meta http-equiv=\"refresh\" content=\"1 ; url=http://localhost:8081/php/RRHH/jornada.php\">";
+        echo "<meta http-equiv=\"refresh\" content=\"1 ; url=http://localhost:8081/php/RRHH/dardealta.php\">";
 
     }
  
@@ -181,7 +182,7 @@
                                 <?php
                                     if ($anadido == true){
                                         echo "<div class=\"alert alert-success\" role=\"alert\">
-                                        Añadido con éxito
+                                        Añadido con éxito con identificador $idEmpleado
                                       </div>" ;
                                     }
                                     else{

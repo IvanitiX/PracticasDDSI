@@ -42,7 +42,7 @@
                             <a href="" class="active">Recursos Humanos</a>
                             <a href="./jornada.html">Asignar Jornada laboral</a>
                             <a href="./InformegeneralRRHH.html">Calcular Informe geneal RRHH</a>
-                            <a href="./dardealta.html">Dar de alta empleado</a>
+                            <a href="./dardealta.php">Dar de alta empleado</a>
                             <a href="./despedir.html">Despedir empleado</a>
                             <a href="./asignarcurso.html">Asignar curso</a>
                             <a href="./bajaempleado.html">Dar de baja empleado</a>
@@ -80,7 +80,6 @@
                    
                                    
                                 
-                                   
                                    <p>Selecciona Centro </p>
                                        <select name="IdCentro" class="field">
                                             <?php
@@ -94,8 +93,9 @@
                                             ?>
                                        </select>
                                        <p></p>
+                                      
                                        <input type="submit" value="Submit" class="botton" />
-                                  
+
                                  
                                </form>
                     
