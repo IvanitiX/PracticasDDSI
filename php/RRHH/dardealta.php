@@ -49,7 +49,7 @@
         }else{
             $centro = $_POST["IdCentro"];
             $array["centro"] = "true";
-            echo $centro;
+            //echo $centro;
 
         }
         if(empty($_POST["nombre"])){
@@ -57,7 +57,7 @@
         }else{
             $nombre = $_POST["nombre"];
             $array["nombre"] = "true";
-            echo $nombre;
+           // echo $nombre;
         }
 
         if(empty($_POST["apellidos"])){
@@ -65,7 +65,7 @@
         }else{
             $apellidos =$_POST["apellidos"];
             $array["apellidos"] = "true";
-            echo $apellidos;
+            //echo $apellidos;
         }
 
         if(empty($_POST["domicilio"])){
@@ -73,7 +73,7 @@
         }else{
             $domicilio =$_POST["domicilio"];
             $array["domicilio"] = "true";
-            echo $domicilio;
+           // echo $domicilio;
         }
 
         if(empty($_POST["correo"])){
@@ -81,7 +81,7 @@
         }else{
             $correo =$_POST["correo"];
             $array["correo"] = "true";
-            echo $correo;
+           // echo $correo;
         }
 
         if(empty($_POST["telefono"])){
@@ -93,7 +93,7 @@
             }else{
                 $array["telefono"] = "true";               
             }
-            echo $telefono;
+          //  echo $telefono;
            
 
         }
@@ -102,15 +102,15 @@
         }else{
             $dni =$_POST["DNI"];
             $idEmpleado = substr($dni ,0,-1);
-            if(strlen($dni)!= 9){
+            if(strlen($dni) < 9){
                 $err1 = "Numero de caracteres erróneo";
             }else{
                 $array["dni"] = "true";
                
             }
 
-            echo $dni;
-            echo "ID " . $idEmpleado ;
+           // echo $dni;
+            //echo "ID " . $idEmpleado ;
             
         }
 
@@ -119,7 +119,7 @@
         }else{
             $puesto =$_POST["puesto"];
             $array["puesto"] = "true";
-            echo $puesto;
+           // echo $puesto;
         }
         
         
@@ -128,18 +128,53 @@
         &&  $array["dni"] = "true" &&  $array["puesto"] = "true"){
             $null ="NULL";
             $estado = 'Activo';
+
+            $consulta0 ="SELECT * FROM contiene WHERE `idCentro`= '$centro'";
+            $resultado0 = mysqli_query( $db, $consulta0 ) or die ( " Algo ha ido mal en la consulta a la base de datos");
+            $ret = mysqli_fetch_array($resultado0);
+            $idCadena = $ret["idCadena"];
+
+            $consulta1 = "SELECT * FROM cadena WHERE `idCadena`= '$idCadena'";
+            $resultado1 = mysqli_query( $db, $consulta1 ) or die ( " Algo ha ido mal en la consulta a la base de datos");
+            $ret = mysqli_fetch_array($resultado1);
+            $vacantes = $ret["Vacantes"];
+            $altasCad = $ret["Altas"];
+            $emplecad = $ret["NumEmpleados"];
+            if($vacantes > 0){
+                $consulta2 ="SELECT * FROM centro WHERE `idCentro`= '$centro'";
+
+          
+                $resultado2 = mysqli_query( $db, $consulta2 ) or die ( " Algo ha ido mal en la consulta a la base de datos");
+            
+                $ret = mysqli_fetch_array($resultado2);
+                $altas = $ret["Altas"];
+            
+                $altas = $altas + 1;
+            
+                $emple = $ret["NumEmpleados"];
+                $emple = $emple + 1;
+    
+            
+                $consulta3 = "UPDATE centro Set Altas=$altas, NumEmpleados=$emple where idCentro='$centro'" ;
+                $resultado3 = mysqli_query( $db, $consulta3 ) or die ( " Algo ha ido mal en la consulta a la base de datos");
+
+            
+                $consulta3 = "UPDATE centro Set Altas=$altas, NumEmpleados=$emple where idCentro='$centro'" ;
+                $resultado3 = mysqli_query( $db, $consulta3 ) or die ( " Algo ha ido mal en la consulta a la base de datos");
+
+
+            }
             $consulta = "INSERT INTO empleadostrabajan values ('$idEmpleado','$nombre','$apellidos','$domicilio','$centro','$correo','$telefono','$dni','$puesto',0,'$estado','No')" ;
             $resultado = mysqli_query( $db, $consulta ) or die ( " Algo ha ido mal en la consulta a la base de datos");
-            
-            if($resultado > 0) {
-                echo "¡Añadido! con identificador $idEmpleado";
+            if($resultado > 0 ) {
+                //echo "¡Añadido! con identificador $idEmpleado";
                 $anadido = true ;
             }
             else echo "No se ha añadido" ;
             
         }
         
-        echo "<meta http-equiv=\"refresh\" content=\"1 ; url=http://localhost:8081/php/RRHH/dardealta.php\">";
+      // echo "<meta http-equiv=\"refresh\" content=\"1 ; url=http://localhost:8081/php/RRHH/dardealta.php\">";
 
     }
  
