@@ -157,15 +157,21 @@
             
                 $consulta3 = "UPDATE centro Set Altas=$altas, NumEmpleados=$emple where idCentro='$centro'" ;
                 $resultado3 = mysqli_query( $db, $consulta3 ) or die ( " Algo ha ido mal en la consulta a la base de datos");
+                   
+                $altasCad = $altasCad + 1;
+                $emplecad = $emplecad + 1;
+                $vacantes = $vacantes - 1;
 
-            
-                $consulta3 = "UPDATE centro Set Altas=$altas, NumEmpleados=$emple where idCentro='$centro'" ;
-                $resultado3 = mysqli_query( $db, $consulta3 ) or die ( " Algo ha ido mal en la consulta a la base de datos");
+                $consulta4 = "UPDATE cadena Set Altas=$altasCad, NumEmpleados=$emplecad , Vacantes=$vacantes where idCadena='$idCadena'" ;
+                $resultado4 = mysqli_query( $db, $consulta4 ) or die ( " Algo ha ido mal en la consulta a la base de datos");
 
+                $consulta = "INSERT INTO empleadostrabajan values ('$idEmpleado','$nombre','$apellidos','$domicilio','$centro','$correo','$telefono','$dni','$puesto',0,'$estado','No')" ;
+                $resultado = mysqli_query( $db, $consulta ) or die ( " Algo ha ido mal en la consulta a la base de datos");
 
+            }else{
+                $anadido = false;
             }
-            $consulta = "INSERT INTO empleadostrabajan values ('$idEmpleado','$nombre','$apellidos','$domicilio','$centro','$correo','$telefono','$dni','$puesto',0,'$estado','No')" ;
-            $resultado = mysqli_query( $db, $consulta ) or die ( " Algo ha ido mal en la consulta a la base de datos");
+            
             if($resultado > 0 ) {
                 //echo "¡Añadido! con identificador $idEmpleado";
                 $anadido = true ;
@@ -202,9 +208,9 @@
                 <div class="row">
                     <div class="vertical-menu col-lg-2 col-sm-3">
                             <a href="../../RRHH/RRHH.html">Recursos Humanos</a>
-                            <a href="../../RRHH/jornada.html" class="active">Asignar Jornada laboral</a>
-                            <a href="../../RRHH/InformegeneralRRHH.html">Calcular Informe geneal RRHH</a>
-                            <a href="../../RRHH/dardealta.html">Dar de alta empleado</a>
+                            <a href="../../RRHH/jornada.php" class="active">Asignar Jornada laboral</a>
+                            <a href="../../RRHH/InformegeneralRRHH.php">Calcular Informe geneal RRHH</a>
+                            <a href="../../RRHH/dardealta.php">Dar de alta empleado</a>
                             <a href="../../RRHH/despedir.html">Despedir empleado</a>
                             <a href="../../RRHH/asignarcurso.html">Asignar curso</a>
                             <a href="../../RRHH/bajaempleado.html">Dar de baja empleado</a>
@@ -218,6 +224,10 @@
                                     if ($anadido == true){
                                         echo "<div class=\"alert alert-success\" role=\"alert\">
                                         Añadido con éxito con identificador $idEmpleado
+                                      </div>" ;
+                                    }if($anadido == false){
+                                        echo "<div class=\"alert alert-success\" role=\"alert\">
+                                        Seleccione otro  centro , maximo de empleados alcanzados.
                                       </div>" ;
                                     }
                                     else{

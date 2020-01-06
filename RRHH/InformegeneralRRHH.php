@@ -38,9 +38,9 @@
         <div class="inicio container">
             <div class="row">
                 <div class="vertical-menu col-lg-2 col-sm-3">
-                    <a href="" class="active">Recursos Humanos</a>
-                    <a href="./jornada.html">Asignar Jornada laboral</a>
-                    <a href="./InformegeneralRRHH.html">Calcular Informe geneal RRHH</a>
+                    <a href="./RRHH.html" >Recursos Humanos</a>
+                    <a href="./jornada.php">Asignar Jornada laboral</a>
+                    <a href="./InformegeneralRRHH.php" class="active">Calcular Informe geneal RRHH</a>
                     <a href="./dardealta.php">Dar de alta empleado</a>
                     <a href="./despedir.html">Despedir empleado</a>
                     <a href="./asignarcurso.html">Asignar curso</a>
@@ -48,22 +48,21 @@
                 </div>
     
                 <div class="inicio col-lg-6 col-sm-6 offset-sm-3">
-                    <form action ="./php/" class="formrrhh">
+                    <form action ="../php/RRHH/InformegeneralRRHH.php" class="formrrhh" method="post">
                         <h4>Calcular informe general recursos humanos</h4>
-                        <p>Selecciona Centro </p>
-                            <select name ="select" class="field">
-                                <option value="centro1">Centro 1</option>
-                                <option value= "centro2">Centro 2</option>
+                        <select name="centro" class="field">
+                                <?php
+                                    include "../php/config_bbdd.php" ;
+                                    $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE) or die ("<h5>No puedo conectarme a la BD.</h5>");
+                                    $consulta = "Select IdCentro from Centro" ;
+                                    $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+                                    while($columna = mysqli_fetch_array($resultado)){
+                                        echo "<option value=" . $columna['IdCentro'] . "> Centro " . $columna['IdCentro'] . "</option>" ;
+                                    }
+                                ?>
                             </select>
+                            <p></p>
                        
-                        <p>Altas:</p>
-                            <input type= "number" name="Altas" class="field" size="15" maxlength="30"/>
-                        
-                        <p>Bajas: </p>
-                            <input type= "number" name="bajas" class="field" size="15" maxlenght="30"/>
-                        
-                        <p>Num empleados: </p>
-                            <input type= "number" name="numempleados" class="field" size="15" maxlenght="30"/>
                         <p></p>
                         <input type="submit" value="Submit" class="botton" />
                     </form>

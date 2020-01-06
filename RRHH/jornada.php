@@ -41,9 +41,9 @@
         <div class="inicio container">
             <div class="row">
                 <div class="vertical-menu col-lg-2 col-sm-3">
-                    <a href="" class="active">Recursos Humanos</a>
-                    <a href="./jornada.html">Asignar Jornada laboral</a>
-                    <a href="./InformegeneralRRHH.html">Calcular Informe geneal RRHH</a>
+                    <a href="./RRHH.html" >Recursos Humanos</a>
+                    <a href="./jornada.php" class="active">Asignar Jornada laboral</a>
+                    <a href="./InformegeneralRRHH.php">Calcular Informe geneal RRHH</a>
                     <a href="./dardealta.php">Dar de alta empleado</a>
                     <a href="./despedir.html">Despedir empleado</a>
                     <a href="./asignarcurso.html">Asignar curso</a>
@@ -53,12 +53,19 @@
                 <div class="inicio col-lg-6 col-sm-6 offset-sm-3">
                     <form action ="../php/RRHH/jornada.php" method="post">
                         <h4>Asignar jornada laboral</h4>
-                        <p>Selecciona Centro</p>
-                            <select name ="select" class="field">
-                                <option value="centro1">Centro 1</option>
-                                <option value= "centro2">Centro 2</option>
+                        <p>Selecciona Centro </p>
+                            <select name="centro" class="field">
+                                <?php
+                                    include "../php/config_bbdd.php" ;
+                                    $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE) or die ("<h5>No puedo conectarme a la BD.</h5>");
+                                    $consulta = "Select IdCentro from Centro" ;
+                                    $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+                                    while($columna = mysqli_fetch_array($resultado)){
+                                        echo "<option value=" . $columna['IdCentro'] . "> Centro " . $columna['IdCentro'] . "</option>" ;
+                                    }
+                                ?>
                             </select>
-                        
+                            <p></p>
                         <p>Jornada:</p>
                             <input type= "number" class="field" name="Jornada" size="15" maxlength="30"/>
                         

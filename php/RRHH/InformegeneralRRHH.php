@@ -22,7 +22,23 @@
         <style>
             
           .error{color: #FF0000;}
-            
+
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            th, td {
+                text-align: left;
+                padding: 10px;
+            }
+
+            tr:nth-child(even){background-color: #f2f2f2}
+
+            th,td {
+                background-color: rgba(7, 101, 138, 0.5);
+                color: white;
+            }   
         </style>
 
   
@@ -33,13 +49,12 @@
       $DB_DATABASE = "itfit";
      
    $db = mysqli_connect($DB_SERVER,$DB_USERNAME,$DB_PASSWORD,$DB_DATABASE) or die ("No puedo conectarme a la BD.");
-    $centro = $jornada = $idEmpleado = "";
-    $centroerr = $jornadaerr = $idEmpleadoerr = "";
+    $centro =  "";
+    $centroerr = "";
 
     $array = array(
         "centro"=> "false",
-        "jornada"=> "false",
-        "empl" => "false",
+       
     );
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -52,34 +67,27 @@
        
 
         }
-        if(empty($_POST["Jornada"])){
-            $jornadaerr = "Campo obligatorio";
-        }else{
-            $jornada = $_POST["Jornada"];
-            $array["jornada"] = "true";
+       
 
-        }
-
-        if(empty($_POST["idEmpleado"])){
-            $idEmpleadoerr = "Campo obligatorio";
-        }else{
-            $idEmpleado =$_POST["idEmpleado"];
-            $array["empl"] = "true";
-
-        }
         $anadido = "";
-        if($array["centro"] == "true" && $array["empl"] == "true" &&  $array["jornada"] == "true"  ){
-            
+        if($array["centro"] == "true"  ){
+            $consulta0 ="SELECT * FROM contiene WHERE `idCentro`= '$centro'";
+            $resultado0 = mysqli_query( $db, $consulta0 ) or die ( " Algo ha ido mal en la consulta a la base de datos");
+            $ret = mysqli_fetch_array($resultado0);
+            $idCadena = $ret["idCadena"];
 
-            if($jornada <= 10){
-                $consulta = "UPDATE empleadostrabajan Set Jornada=$jornada where idEmpleado='$idEmpleado' and idCentro='$centro'" ;
-                $resultado = mysqli_query( $db, $consulta ) or die ( " Algo ha ido mal en la consulta a la base de datos");
-                $anadido = true;
-            }else{
-                $anadido = false;
-            }
-          
+            $consulta1 = "SELECT * FROM cadena WHERE `idCadena`= '$idCadena'";
+            $resultado1 = mysqli_query( $db, $consulta1 ) or die ( " Algo ha ido mal en la consulta a la base de datos");
+            $ret = mysqli_fetch_array($resultado1);
+            $vacantes = $ret["Vacantes"];
+            $altasCad = $ret["Altas"];
+            $emplecad = $ret["NumEmpleados"];
+            $bajas = $ret["Bajas"];
+            $max = $ret["Maxempleados"];
+            $numcentros = $ret["NumCentros"];
             
+          
+            $anadido ="true";
         }
         
         //echo "<meta http-equiv=\"refresh\" content=\"1 ; url=http://localhost:8081/php/RRHH/jornada.php\">";
@@ -108,8 +116,8 @@
         <div class="row">
             <div class="vertical-menu col-lg-2 col-sm-3">
                     <a href="../../RRHH/RRHH.html">Recursos Humanos</a>
-                    <a href="../../RRHH/jornada.php" class="active">Asignar Jornada laboral</a>
-                    <a href="../../RRHH/InformegeneralRRHH.php">Calcular Informe geneal RRHH</a>
+                    <a href="../../RRHH/jornada.php" >Asignar Jornada laboral</a>
+                    <a href="../../RRHH/InformegeneralRRHH.php" class="active">Calcular Informe geneal RRHH</a>
                     <a href="../../RRHH/dardealta.php">Dar de alta empleado</a>
                     <a href="../../RRHH/despedir.html">Despedir empleado</a>
                     <a href="../../RRHH/asignarcurso.html">Asignar curso</a>
@@ -118,15 +126,15 @@
     
             <div class="inicio col-lg-6 col-sm-6 offset-sm-3">
                     <form action ="#" method="post">
-                        <h4>Asignar jornada laboral</h4>
+                        <h4>Calcular informe general recursos humanos</h4>
                         <?php
                             if ($anadido == true){
                                 echo "<div class=\"alert alert-success\" role=\"alert\">
-                                Jornada modificada con exito
+                                Consulte el informe
                                 </div>" ;
                             }if($anadido == false){
                                 echo "<div class=\"alert alert-success\" role=\"alert\">
-                               Seleccione una jornada menor.
+                                 Hay algún error.
                                 </div>" ;
                             }
                             else{
@@ -146,18 +154,51 @@
                             ?>                          
                           </select>
                             <p></p>
-                        <p>Jornada:</p>
-                            <input type= "number" class="field" name="Jornada" size="15" maxlength="30"/>
-                        <span class = "error"><?php echo $jornadaerr;?></span>
-                        <p></p>
-                        <p>Identificador empleado: </p>
-                            <input type= "text" class= "field" name="idEmpleado" size="15" maxlenght="30"/>
-                    
-                        <span class = "error"><?php echo $idEmpleadoerr;?></span>
-                        <p></p>
+                       
                         <input type="submit" class ="botton" name="enviar" value="Submit" />
                             
                     </form>
+                    
+                    <h4>El centro seleccionado pertenece a ItFit <?php echo $idCadena; ?></h4>
+                    <table class="tabla">
+                        <tr>
+                            <th>Cadena</th>
+                            <td><?php echo $idCadena; ?></td>
+
+                        </tr>
+                        <tr>
+                            <th>Número Centros</th>
+                            <td><?php echo $numcentros; ?></td>
+
+                        </tr>
+                        <tr>
+                            <th>Altas</th>
+                            <td><?php echo $altasCad; ?></td>
+
+                        </tr>
+                        <tr>
+                            <th>Bajas</th>
+                            <td><?php echo $bajas; ?></td>
+
+                        </tr>
+
+                        <tr>
+                            <th>Número empleados</th>
+                            <td><?php echo $emplecad; ?></td>
+
+                        </tr>
+                        <tr>
+                            <th>Máximo empleados</th>
+                            <td><?php echo $max; ?></td>
+
+                        </tr>
+                        <tr>
+                            <th>Vacantes</th>
+                            <td><?php echo $vacantes; ?></td>
+
+                        </tr>
+
+                    </table>
             </div>
         </div>
     </div>
