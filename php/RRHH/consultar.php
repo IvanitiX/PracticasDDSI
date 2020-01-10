@@ -49,46 +49,51 @@
       $DB_DATABASE = "itfit";
      
    $db = mysqli_connect($DB_SERVER,$DB_USERNAME,$DB_PASSWORD,$DB_DATABASE) or die ("No puedo conectarme a la BD.");
-    $centro =  "";
-    $centroerr = "";
+    $idEmpleado =  "";
+    $emplerr = "";
 
     $array = array(
-        "centro"=> "false",
+        "empl"=> "false",
        
     );
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-        if(empty($_POST["centro"])){
-            $centroerr = "Campo obligatorio";
+        if(empty($_POST["idEmpleado"])){
+            $emplerr = "Campo obligatorio";
             
         }else{
-            $centro = $_POST["centro"];
-            $array["centro"] = "true";
-       
+            $idEmpleado = $_POST["idEmpleado"];
+            $array["empl"] = "true";
+            
 
         }
        
 
         $anadido = "";
-        if($array["centro"] == "true"  ){
-            $consulta0 ="SELECT * FROM contiene WHERE `idCentro`= '$centro'";
-            $resultado0 = mysqli_query( $db, $consulta0 ) or die ( " Algo ha ido mal en la consulta a la base de datos");
-            $ret = mysqli_fetch_array($resultado0);
-            $idCadena = $ret["idCadena"];
+       
+            $consulta ="SELECT * FROM empleadostrabajan WHERE `idEmpleado`= '$idEmpleado'";
+            $resultado = mysqli_query( $db, $consulta) or die ( " Algo ha ido mal en la consulta a la base de datos");
+            $ret = mysqli_fetch_array($resultado);
+            $nombre = $ret["nombre"];
+            $apellidos = $ret["apellidos"];
+            $domicilio = $ret["domicilio"];
+            $centro = $ret["IdCentro"];
+            $mail = $ret["correo"];
+            $puesto = $ret["Puesto"];
+            $Jornada = $ret["Jornada"];
+            $estado = $ret["Estado"];
+            $cursos = $ret["Formación"];
+            $incorporacion = $ret["incorporacion"];
+            $telef = $ret["Telefono"];
+            $dni = $ret["dni"];
 
-            $consulta1 = "SELECT * FROM cadena WHERE `idCadena`= '$idCadena'";
-            $resultado1 = mysqli_query( $db, $consulta1 ) or die ( " Algo ha ido mal en la consulta a la base de datos");
-            $ret = mysqli_fetch_array($resultado1);
-            $vacantes = $ret["Vacantes"];
-            $altasCad = $ret["Altas"];
-            $emplecad = $ret["NumEmpleados"];
-            $bajas = $ret["Bajas"];
-            $max = $ret["Maxempleados"];
-            $numcentros = $ret["NumCentros"];
-            
+
+          
+
+         
           
             $anadido ="true";
-        }
+        
         
         //echo "<meta http-equiv=\"refresh\" content=\"1 ; url=http://localhost:8081/php/RRHH/jornada.php\">";
 
@@ -117,17 +122,17 @@
             <div class="vertical-menu col-lg-2 col-sm-3">
                     <a href="../../RRHH/RRHH.html">Recursos Humanos</a>
                     <a href="../../RRHH/jornada.php" >Asignar Jornada laboral</a>
-                    <a href="../../RRHH/InformegeneralRRHH.php" class="active">Calcular Informe geneal RRHH</a>
+                    <a href="../../RRHH/InformegeneralRRHH.php" >Calcular Informe geneal RRHH</a>
                     <a href="../../RRHH/dardealta.php">Dar de alta empleado</a>
                     <a href="../../RRHH/despedir.html">Despedir empleado</a>
                     <a href="../../RRHH/asignarcurso.php">Asignar curso</a>
-                    <a href="../../RRHH/consultar.php">Consultar empleado</a>
+                    <a href="../../RRHH/consultar.php" class="active">Consultar empleado</a>
                     <a href="../../RRHH/bajaempleado.php">Dar de baja empleado</a>
             </div>
     
             <div class="inicio col-lg-6 col-sm-6 offset-sm-3">
                     <form action ="#" method="post">
-                        <h4>Calcular informe general recursos humanos</h4>
+                        <h4>Consultar empleado</h4>
                         <?php
                             if ($anadido == true){
                                 echo "<div class=\"alert alert-success\" role=\"alert\">
@@ -143,59 +148,83 @@
                             }
                         ?>
                         
-                        <p>Selecciona Centro</p>
-                        <select name="centro" class="field">
-                            <?php
-                                $db = mysqli_connect($DB_SERVER,$DB_USERNAME,$DB_PASSWORD,$DB_DATABASE) or die ("No puedo conectarme a la BD.");
-                                $consulta = "Select IdCentro from Centro" ;
-                                $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
-                                while($columna = mysqli_fetch_array($resultado)){
-                                    echo "<option value=" . $columna['IdCentro'] . "> Centro " . $columna['IdCentro'] . "</option>" ;
-                                }
-                            ?>                          
-                          </select>
+                        <select name="idEmpleado" class="field">
+                                <?php
+                                    $db = mysqli_connect($DB_SERVER,$DB_USERNAME,$DB_PASSWORD,$DB_DATABASE) or die ("No puedo conectarme a la BD.");
+                                    $consulta = "Select idEmpleado from empleadostrabajan" ;
+                                    $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+                                    while($columna = mysqli_fetch_array($resultado)){
+                                        echo "<option value=" . $columna['idFormacion'] . ">  " . $columna['idEmpleado'] . "</option>" ;
+                                    }
+                                ?>
+                            </select>
                             <p></p>
-                       
+                     
                         <input type="submit" class ="botton" name="enviar" value="Submit" />
                             
                     </form>
                     
-                    <h4>El centro seleccionado pertenece a ItFit <?php echo $idCadena; ?></h4>
+                    <h4>Empleado  <?php echo $idEmpleado; ?></h4>
                     <table class="tabla">
                         <tr>
-                            <th>Cadena</th>
-                            <td><?php echo $idCadena; ?></td>
+                            <th>Nombre: </th>
+                            <td><?php echo $nombre; ?></td>
 
                         </tr>
                         <tr>
-                            <th>Número Centros</th>
-                            <td><?php echo $numcentros; ?></td>
+                            <th>Apellidos</th>
+                            <td><?php echo $apellidos; ?></td>
 
                         </tr>
                         <tr>
-                            <th>Altas</th>
-                            <td><?php echo $altasCad; ?></td>
+                            <th>Domicilio:</th>
+                            <td><?php echo $domicilio; ?></td>
 
                         </tr>
                         <tr>
-                            <th>Bajas</th>
-                            <td><?php echo $bajas; ?></td>
+                            <th>Centro</th>
+                            <td><?php echo $centro; ?></td>
 
                         </tr>
 
                         <tr>
-                            <th>Número empleados</th>
-                            <td><?php echo $emplecad; ?></td>
+                            <th>Mail:</th>
+                            <td><?php echo $mail; ?></td>
 
                         </tr>
                         <tr>
-                            <th>Máximo empleados</th>
-                            <td><?php echo $max; ?></td>
+                            <th>Teléfono: </th>
+                            <td><?php echo $telef; ?></td>
 
                         </tr>
                         <tr>
-                            <th>Vacantes</th>
-                            <td><?php echo $vacantes; ?></td>
+                            <th>DNI:</th>
+                            <td><?php echo $dni; ?></td>
+
+                        </tr>
+                        <tr>
+                            <th>Puesto:</th>
+                            <td><?php echo $puesto; ?></td>
+
+                        </tr>
+                        <tr>
+                            <th>Jornada:</th>
+                            <td><?php echo $Jornada; ?><p>horas diarias </p></td>
+
+                        </tr>
+                        <tr>
+                            <th>Estado:</th>
+                            <td><?php echo $estado; ?></td>
+
+                        </tr>
+                        <tr>
+                            <th>Cursos:</th>
+                            <td><?php echo $cursos; ?></td>
+
+                        </tr>
+                        <tr>
+                            <th>Incorporacion:</th>
+                            <td><?php echo $incorporacion; ?></td>
 
                         </tr>
 

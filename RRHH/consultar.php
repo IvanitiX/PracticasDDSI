@@ -37,6 +37,7 @@
             </span>
         </nav>
     
+    <body>
         <div class="inicio container">
             <div class="row">
                 <div class="vertical-menu col-lg-2 col-sm-3">
@@ -45,23 +46,33 @@
                     <a href="./InformegeneralRRHH.php">Calcular Informe geneal RRHH</a>
                     <a href="./dardealta.php">Dar de alta empleado</a>
                     <a href="./despedir.html">Despedir empleado</a>
-                    <a href="./asignarcurso.html">Asignar curso</a>
-                    <a href="./bajaempleado.html" class="active">Dar de baja empleado</a>
+                    <a href="./asignarcurso.php" >Asignar curso</a>
+                    <a href="./bajaempleado.php">Dar de baja empleado</a>
+                    <a href="./consultar.php" class="active">Consultar empleado</a>
                 </div>
     
                 <div class="inicio col-lg-6 col-sm-6 offset-sm-3">
-                    <form action="./php/" class="formrrhh">
-                        <h4>Dar de baja a empleado</h4>
-                        <p>Fecha de vencimiento:</p>
-                        <input type="datetime" name="fecha" class="field" size="20" maxlength="10"/>
-                        <p>idEmpleado</p>
-                        <input type="text" name="idEmpleado" size="20" class="field" maxlength="8"/>
+                    <form action ="../php/RRHH/consultar.php" class="formrrhh" , method="post">
+                        <h4>Consultar empleado</h4>
+                       
+                        <p>Seleccione empleado </p>
+
+                        <select name="idEmpleado" class="field" >
+                                <?php
+                                    include "../php/config_bbdd.php" ;
+                                    $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE) or die ("<h5>No puedo conectarme a la BD.</h5>");
+                                    $consulta = "Select idEmpleado from empleadostrabajan" ;
+                                    $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+                                    while($columna = mysqli_fetch_array($resultado)){
+                                        echo "<option value=" . $columna['idEmpleado'] . ">  " . $columna['idEmpleado'] . "</option>" ;
+                                    }
+                                ?>
+                        </select>
                         <p></p>
+                     
                         <input type="submit" value="Submit" class="botton" />
-            
                     </form>
                 </div>
             </div>
         </div>
-
-        </body>
+    </body>

@@ -46,31 +46,43 @@
                     <a href="./InformegeneralRRHH.php">Calcular Informe geneal RRHH</a>
                     <a href="./dardealta.php">Dar de alta empleado</a>
                     <a href="./despedir.html">Despedir empleado</a>
-                    <a href="./asignarcurso.html" class="active">Asignar curso</a>
-                    <a href="./bajaempleado.html">Dar de baja empleado</a>
+                    <a href="./asignarcurso.php" class="active">Asignar curso</a>
+                    <a href="./consultar.php">Consultar empleado</a>
+                    <a href="./bajaempleado.php">Dar de baja empleado</a>
                 </div>
     
                 <div class="inicio col-lg-6 col-sm-6 offset-sm-3">
-                    <form action="./php/" class="formrrhh">
+                    <form action ="../php/RRHH/asignarcurso.php" class="formrrhh" , method="post">
                         <h4>Asignar curso</h4>
-                        <p>Fecha del curso:</p>
-                            <input type="date" name="fecha" class="field" size="20" maxlength="10"/>
-            
-                         
-                        <p>Curso:</p>
-                        <select name ="select" class="field">
-                            <option value="1">Tecnodeporte</option>
-                            <option value= "2">fit it resources </option>
+                        <p>Seleccione curso </p>
+                        <select name="idFormacion" class="field">
+                            <?php
+                                include "../php/config_bbdd.php" ;
+                                $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE) or die ("<h5>No puedo conectarme a la BD.</h5>");
+                                $consulta = "Select idFormacion from formacion" ;
+                                $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+                                while($columna = mysqli_fetch_array($resultado)){
+                                    echo "<option value=" . $columna['idFormacion'] . "> " . $columna['idFormacion'] . "</option>" ;
+                                }
+                            ?>
                         </select>
-                        
-                        <p>Duracion:  </p>
-                            <input type="number" name="duration" class="field" size="3" maxlength="30"/>
-                        
-                        <p>idEmpleado:</p>
-                            <input type="text" name="idEmpleado" size="20" class="field" maxlength="8"/>
-            
                         <p></p>
-                            <input type="submit" value="Submit" class="botton" />
+                        <p>Seleccione empleado </p>
+
+                        <select name="idEmpleado" class="field" >
+                                <?php
+                                    include "../php/config_bbdd.php" ;
+                                    $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE) or die ("<h5>No puedo conectarme a la BD.</h5>");
+                                    $consulta = "Select idEmpleado from empleadostrabajan" ;
+                                    $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+                                    while($columna = mysqli_fetch_array($resultado)){
+                                        echo "<option value=" . $columna['idEmpleado'] . ">  " . $columna['idEmpleado'] . "</option>" ;
+                                    }
+                                ?>
+                        </select>
+                        <p></p>
+                     
+                        <input type="submit" value="Submit" class="botton" />
                     </form>
                 </div>
             </div>

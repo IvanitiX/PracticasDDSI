@@ -43,8 +43,9 @@
                     <a href="./InformegeneralRRHH.php" class="active">Calcular Informe geneal RRHH</a>
                     <a href="./dardealta.php">Dar de alta empleado</a>
                     <a href="./despedir.html">Despedir empleado</a>
-                    <a href="./asignarcurso.html">Asignar curso</a>
-                    <a href="./bajaempleado.html">Dar de baja empleado</a>
+                    <a href="./asignarcurso.php">Asignar curso</a>
+                    <a href="./bajaempleado.php">Dar de baja empleado</a>
+                    <a href="./consultar.php">Consultar empleado</a>
                 </div>
     
                 <div class="inicio col-lg-6 col-sm-6 offset-sm-3">
@@ -62,9 +63,8 @@
                                 ?>
                             </select>
                             <p></p>
-                       
-                        <p></p>
-                        <input type="submit" value="Submit" class="botton" />
+                            <input type="submit" value="Submit" class="botton" />
+
                     </form>
                 </div>
             </div>

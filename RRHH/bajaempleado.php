@@ -37,49 +37,44 @@
             </span>
         </nav>
     
-        <body>
         <div class="inicio container">
             <div class="row">
                 <div class="vertical-menu col-lg-2 col-sm-3">
                     <a href="./RRHH.html" >Recursos Humanos</a>
-                    <a href="./jornada.php" class="active">Asignar Jornada laboral</a>
+                    <a href="./jornada.php">Asignar Jornada laboral</a>
                     <a href="./InformegeneralRRHH.php">Calcular Informe geneal RRHH</a>
                     <a href="./dardealta.php">Dar de alta empleado</a>
                     <a href="./despedir.html">Despedir empleado</a>
                     <a href="./asignarcurso.php">Asignar curso</a>
-                    <a href="./bajaempleado.php">Dar de baja empleado</a>
                     <a href="./consultar.php">Consultar empleado</a>
+                    <a href="./bajaempleado.php" class="active">Dar de baja empleado</a>
                 </div>
     
                 <div class="inicio col-lg-6 col-sm-6 offset-sm-3">
-                    <form action ="../php/RRHH/jornada.php" method="post">
-                        <h4>Asignar jornada laboral</h4>
-                        <p>Selecciona Centro </p>
-                            <select name="centro" class="field">
+                    <form action="../php/RRHH/baja.php" class="formrrhh" method="post">
+                        <h4>Dar de baja a empleado</h4>
+                        <p>Fecha de vencimiento:</p>
+                        <input type="date" name="fecha" class="field" size="20" maxlength="10"/>
+                        <p>idEmpleado</p>
+                        <select name="idEmpleado" class="field" >
                                 <?php
                                     include "../php/config_bbdd.php" ;
                                     $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE) or die ("<h5>No puedo conectarme a la BD.</h5>");
-                                    $consulta = "Select IdCentro from Centro" ;
+                                    $consulta = "Select idEmpleado from empleadostrabajan" ;
                                     $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
                                     while($columna = mysqli_fetch_array($resultado)){
-                                        echo "<option value=" . $columna['IdCentro'] . "> Centro " . $columna['IdCentro'] . "</option>" ;
+                                        echo "<option value=" . $columna['idEmpleado'] . ">  " . $columna['idEmpleado'] . "</option>" ;
                                     }
                                 ?>
-                            </select>
-                            <p></p>
-                        <p>Jornada:</p>
-                            <input type= "number" class="field" name="Jornada" size="15" maxlength="30"/>
-                        
-                        <p>Identificador empleado: </p>
-                            <input type= "text" class= "field" name="idEmpleado" size="15" maxlenght="30"/>
+                        </select>
                         <p></p>
-        
-                        <input type="submit" class ="botton" name="enviar" value="Submit" />
-                            
+                       
+                        <p></p>
+                        <input type="submit" value="Submit" class="botton" />
+            
                     </form>
                 </div>
             </div>
         </div>
-    
-    </body>
-</html>
+
+        </body>

@@ -200,11 +200,23 @@ CREATE TABLE  `empleadostrabajan`(
 Formación varchar(20) DEFAULT NULL
 
 
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;;
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-ALTER TABLE `empleadostrabjan`
+CREATE TABLE `formacion`(
+  `idFormacion` varchar(20) NOT NULL,
+  `fecha`date NOT NULL,
+  `duraciondias`  INT(11) NOT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `formacion`
+  ADD PRIMARY KEY (`idFormacion`) USING BTREE;
+
+ALTER TABLE `empleadostrabajan`
   ADD PRIMARY KEY (`IdEmpleado`) USING BTREE,
-  ADD CONSTRAINT `empleadostrabajan_ibfk_1` FOREIGN KEY (`IdCentro`) REFERENCES `centro` (`idCentro`);
+  ADD CONSTRAINT `empleadostrabajan_ibfk_1` FOREIGN KEY (`IdCentro`) REFERENCES `centro` (`idCentro`)
+  ADD CONSTRAINT `empleadostrabajan_ibfk_2` FOREIGN KEY (`Formación`) REFERENCES `formacion` (`idFormacion`);
+
+
 
 
 CREATE TABLE  `cadena`(
@@ -213,7 +225,7 @@ CREATE TABLE  `cadena`(
 `Altas` INT NOT NULL check(`Altas` >= 0),
 `Bajas` INT NOT NULL check(`Bajas` >= 0),
 `NumEmpleados` INT NOT NULL,
-`Maxempleados INT NOT NULL,
+`Maxempleados` INT NOT NULL,
 `Vacantes` INT NOT NULL check (`Vacantes` <= `Maxempleados`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -233,10 +245,15 @@ ALTER TABLE `contiene`
   ADD CONSTRAINT `contiene_ibfk_1` FOREIGN KEY (`IdCentro`) REFERENCES `centro` (`idCentro`),
   ADD CONSTRAINT `contiene_ibfk_2` FOREIGN KEY (`IdCadena`) REFERENCES `cadena` (`idCadena`);
 
+ALTER TABLE `empleadostrabajan` ADD `incorporacion` date DEFAULT  NULL;
 INSERT INTO `contiene` (`idCentro`, `idCadena`) VALUES ('C01', 'España');
 INSERT INTO `contiene` (`idCentro`, `idCadena`) VALUES ('CO2', 'España');
 
+INSERT INTO `formacion` (`idFormacion`, `fecha`, `duraciondias`) VALUES ('Tecnofit', '2020-02-13', '15');
+INSERT INTO `formacion` (`idFormacion`, `fecha`, `duraciondias`) VALUES ('+salud', '2020-01-30', '6');
 
+
+INSERT INTO `empleadostrabajan` (`idEmpleado`, `nombre`, `apellidos`, `domicilio`, `IdCentro`, `correo`, `Telefono`, `dni`, `Puesto`, `Jornada`, `Estado`, `Formación`) VALUES ('8556491', 'Lorenzo', 'García Ferrer', 'c/Federico nº6', 'C01', 'lorenzo@gmail.com', '639752148', '8556491P', 'jefe sala', '0', 'Activo', NULL);
 -------------------------------------------------------------
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

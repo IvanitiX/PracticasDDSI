@@ -44,8 +44,9 @@
                             <a href="./InformegeneralRRHH.php">Calcular Informe geneal RRHH</a>
                             <a href="./dardealta.php" class="active">Dar de alta empleado</a>
                             <a href="./despedir.html">Despedir empleado</a>
-                            <a href="./asignarcurso.html">Asignar curso</a>
-                            <a href="./bajaempleado.html">Dar de baja empleado</a>
+                            <a href="./asignarcurso.php">Asignar curso</a>
+                            <a href="./consultar.php">Consultar empleado</a>
+                            <a href="./bajaempleado.php">Dar de baja empleado</a>
                         </div>
             
                         <div class="inicio col-lg-6 col-sm-6 offset-sm-3">
