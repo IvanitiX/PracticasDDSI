@@ -222,6 +222,10 @@ ALTER TABLE `maquinas`
   ADD CONSTRAINT `maquinas_ibfk_1` FOREIGN KEY (`IdCentro`) REFERENCES `centro` (`idCentro`);
 COMMIT;
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 CREATE TABLE  `empleadostrabajan`(
 `idEmpleado` varchar(8) NOT NULL, 
 `nombre` varchar(10) NOT NULL,
