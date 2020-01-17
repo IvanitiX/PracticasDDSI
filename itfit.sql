@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-01-2020 a las 18:07:51
+-- Tiempo de generación: 17-01-2020 a las 12:49:50
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.1.33
 
@@ -222,59 +222,6 @@ ALTER TABLE `maquinas`
   ADD CONSTRAINT `maquinas_ibfk_1` FOREIGN KEY (`IdCentro`) REFERENCES `centro` (`idCentro`);
 COMMIT;
 
-CREATE TABLE  `empleadostrabajan`(
-`idEmpleado` varchar(8) NOT NULL, 
-`nombre` varchar(10) NOT NULL,
-`apellidos` varchar (30) NOT NULL,
-`domicilio` varchar(30) NOT NULL,
-`IdCentro` varchar(3) NOT NULL,
-`correo` varchar(100) NOT NULL,
-`Telefono` varchar(9) NOT NULL,
-`dni` varchar(9) NOT NULL,
-`Puesto` varchar(20) NOT NULL,
-`Jornada` INT DEFAULT NULL,
-`Estado` varchar(10) NOT NULL CHECK (`Estado` in ('Activo','Baja')),
-Formación varchar(20) DEFAULT NULL
-
-
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;;
-
-ALTER TABLE `empleadostrabjan`
-  ADD PRIMARY KEY (`IdEmpleado`) USING BTREE,
-  ADD CONSTRAINT `empleadostrabajan_ibfk_1` FOREIGN KEY (`IdCentro`) REFERENCES `centro` (`idCentro`);
-
-
-CREATE TABLE  `cadena`(
-`idCadena` varchar(10) NOT NULL, 
-`NumCentros` INT NOT NULL check(`NumCentros` >=1),
-`Altas` INT NOT NULL check(`Altas` >= 0),
-`Bajas` INT NOT NULL check(`Bajas` >= 0),
-`NumEmpleados` INT NOT NULL,
-`Maxempleados INT NOT NULL,
-`Vacantes` INT NOT NULL check (`Vacantes` <= `Maxempleados`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-ALTER TABLE `cadena`
-  ADD PRIMARY KEY (`IdCadena`) USING BTREE;
-  
-INSERT INTO `cadena` (`idCadena`, `NumCentros`, `Altas`, `Bajas`, `NumEmpleados`, `Maxempleados`, `Vacantes`) VALUES ('España', '2', '0', '0', '5', '100', '95');
-
-CREATE TABLE  `contiene`(
-`idCentro` varchar(3) NOT NULL, 
-`idCadena` varchar(10) NOT NULL
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-ALTER TABLE `contiene`
-  ADD PRIMARY KEY (`IdCentro`) USING BTREE,
-  ADD CONSTRAINT `contiene_ibfk_1` FOREIGN KEY (`IdCentro`) REFERENCES `centro` (`idCentro`),
-  ADD CONSTRAINT `contiene_ibfk_2` FOREIGN KEY (`IdCadena`) REFERENCES `cadena` (`idCadena`);
-
-INSERT INTO `contiene` (`idCentro`, `idCadena`) VALUES ('C01', 'España');
-INSERT INTO `contiene` (`idCentro`, `idCadena`) VALUES ('CO2', 'España');
-
-
--------------------------------------------------------------
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
