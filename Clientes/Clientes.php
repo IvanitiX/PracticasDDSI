@@ -84,7 +84,9 @@
                 <form action="../php/Clientes/modificarcliente.php" method="post">
                     <h4>Datos cliente</h4>
                     <p>Identificador cliente</p>
-                    <input type="text" name="IDCliente" size="20" class="field" maxlength="30"/>
+                    <input type="text" name="IDCliente" size="20" class="field" maxlength="30" readonly/>
+                    <p>DNI</p>
+                    <input type="text" name="DNI" size="20" class="field" maxlength="30" readonly/>
                     <p>Nombre</p>
                     <input type="text" name="Nombre" size="20" class="field" maxlength="30"/>
                     <p>Apellidos</p>
