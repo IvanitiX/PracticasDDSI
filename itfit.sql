@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-01-2020 a las 12:49:50
+-- Tiempo de generación: 17-01-2020 a las 17:19:12
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.1.33
 
@@ -42,6 +42,18 @@ CREATE TABLE `centro` (
 INSERT INTO `centro` (`idCentro`, `Altas`, `Bajas`, `NumEmpleados`) VALUES
 ('C01', 0, 0, 2),
 ('CO2', 1, 1, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `citas`
+--
+
+CREATE TABLE `citas` (
+  `cliente` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `tipo` varchar(10) NOT NULL
+) ;
 
 -- --------------------------------------------------------
 
@@ -167,6 +179,12 @@ INSERT INTO `productos` (`IdProducto`, `Descripcion`, `Cantidad`, `Precio`) VALU
 --
 ALTER TABLE `centro`
   ADD PRIMARY KEY (`idCentro`);
+
+--
+-- Indices de la tabla `citas`
+--
+ALTER TABLE `citas`
+  ADD PRIMARY KEY (`cliente`,`fecha`);
 
 --
 -- Indices de la tabla `clientes`
