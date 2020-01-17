@@ -109,12 +109,12 @@ CREATE TABLE `inicio` (
 --
 
 INSERT INTO `inicio` (`Usuario`, `Contrasena`, `Rol`) VALUES
-('Alberto', 'ITAlberto', 'Clientes'),
+('Alberto', 'ITAlberto', 'Ventas'),
 ('Guillermo', 'ITGuillermo', 'Contabilidad'),
 ('Iván', 'ITIvan', 'Admin'),
 ('Iván2', 'ITIvan2', 'Inventario'),
 ('Migue', 'ITMigue', 'RRHH'),
-('Octavio', 'ITOctavio', 'Ventas');
+('Octavio', 'ITOctavio', 'Clientes');
 
 -- --------------------------------------------------------
 
