@@ -42,7 +42,7 @@
                 $destino = "../RRHH/RRHH.html" ;
             break ;
             case 'Ventas' :
-                $destino = "../RRHH/RRHH.html" ;
+                $destino = "../Ventas/Ventas.php" ;
             break ;
 
         }
