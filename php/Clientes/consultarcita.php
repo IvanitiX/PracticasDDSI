@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,6 +14,22 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        
+        <?php
+            include "../config_bbdd.php" ;
+            $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE) or die ("No puedo conectarme a la BD.");
+
+            if($_SERVER["REQUEST_METHOD"] == "POST"){
+                if(empty($_POST["IDCliente"])){
+                    $IDCliente = 0;
+                }else{
+                    $IDCliente = $_POST['IDCliente'];
+
+                    $consulta = "SELECT * FROM `citas` WHERE cliente = " . $IDCliente . ";";
+                    $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+                }
+            }
+        ?>
     </head>
     
     
@@ -61,9 +76,6 @@
                         <option>Nutricion</option>
                     </select>
                     
-                    <!--<p>Tarifa</p>
-                    <input type="text" name="Descripcion" size="20" class="field" maxlength="30"/>-->
-                    
                     <input type="submit" class="botton" value="Añadir">
                 </form>
             </div>
@@ -75,6 +87,24 @@
                     <input type="text" name="IDCliente" size="20" class="field" maxlength="30"/>
                     
                     <input type="submit" class="botton" value="Consultar">
+                </form>
+            </div>
+            
+            <div class="col-lg-4 col-sm-6">
+                <form>
+                    <h4>Citas encontradas</h4>
+                    
+                    <?php
+                        if($IDCliente){
+                            while($cliente = mysqli_fetch_array($resultado)){
+                                echo ("<p>Fecha y hora</p> " .
+                                $cliente['fecha'] .
+                                "<p>Tipo</p>" .
+                                $cliente['tipo'];
+                            }
+                        }
+                    ?>
+                    
                 </form>
             </div>
 
