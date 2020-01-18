@@ -38,8 +38,8 @@
         <div class="inicio container">
             <div class="row">
                 <div class="vertical-menu col-lg-2 col-sm-3">
-                    <a href="./Ventas.php" class="active">Ventas</a>
-                    <a href="./precios.php">Establecer precio productos</a>
+                    <a href="./Ventas.php">Ventas</a>
+                    <a href="./precios.php" class="active">Establecer precio productos</a>
                     <a href="./tarifas.php">Tarifas</a>
                 </div>
                 <div class="col-lg-6 col-sm-6">
@@ -50,58 +50,36 @@
         
         <div class="row">
             
-            <div class="col-lg-6 col-sm-6">
-                <form>
-                    <h3>Factura</h3>
+            <div class="col-lg-8 col-sm-6">
+                <form style="width:400px">
+                    <h3>Lista de productos</h3>
                     <?php
                         include "../php/config_bbdd.php" ;
                         $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE) or die ("<h5>No puedo conectarme a la BD.</h5>");
-                        $consulta = "Select * from Productos Order By Descripcion" ;
+                        $consulta = "Select * from Productos Order By IdProducto" ;
                         $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
-                        echo "<table borde='2' id=factura>";
+                        echo "<table borde='2'>";
                         echo "<tr>";
+                        echo "<th>Id. Producto</th>";
                         echo "<th>Descripción</th>";
-                        echo "<th>Stock</th>";
-                        echo "<th>Precio</th>";
                         echo "<th>Cantidad</th>";
+                        echo "<th>Precio actual</th>";
+                        echo "<th>Nuevo precio</th>";
                         echo "</tr>";
-                        $num_prod = 0;
-                        $fila = array();
-                        while($fila[$num_prod] = mysqli_fetch_array($resultado)){
-                            $num_prod = $num_prod+1;
-                        }
-                        $i = 0;
-                        echo "<tr>";
-                        echo "<td><select name=producto>\n";
-                        while($i < $num_prod){
-                            echo "<option value=" . $fila[$i]['Descripcion'] . ">" . $fila[$i]['Descripcion'] . "</option>\n";
-                            $i++;
-                        }
-                        echo "</select></td>";
                         while($fila = mysqli_fetch_array($resultado)){
-                            
-                            echo "<td>" . $fila['Cantidad'] ."</td><td>" . $fila['Precio'] . "</td><td><input name=Cantidad type=number min=0 max=" . $fila['Cantidad'] .  ">" 
+                            echo "<tr>";
+                            echo "<td>" . $fila['IdProducto'] . "</td><td>" . $fila['Descripcion'] . "</td><td>" . $fila['Cantidad'] ."</td><td>" . $fila['Precio'] . "</td><td><input name=" . $fila['Descripcion'] . "\" type=number min=0 max=9999 size=20 value=" . $fila['Precio'] . ">" 
                             . "</td>";
-                            
+                            echo "</tr>";
                         }
-                        echo "</tr>";
                         echo "</table>";
                     ?>
-                    <input type="submit" class="botton" value="Terminar">
+                    <input type=submit value=Enviar>
                 </form>
-                <button onclick="aniadeProducto()">Añadir producto</button>
             </div>
+            
         </div>
         
     </body>
     
 </html>
-
- <script>
-    function aniadeProducto() {
-      var x = document.createElement("TR");
-      var linea_fact = "<p>hola holita vecinito</p>"
-      x.innerHTML = linea_fact;
-      document.getElementById("factura").appendChild(x);
-    }
-</script>
