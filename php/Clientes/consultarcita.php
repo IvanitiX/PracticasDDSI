@@ -97,10 +97,10 @@
                     <?php
                         if($IDCliente){
                             while($cliente = mysqli_fetch_array($resultado)){
-                                echo ("<p>Fecha y hora</p> " .
+                                echo ("<p> Fecha y hora " .
                                 $cliente['fecha'] .
-                                "<p>Tipo</p>" .
-                                $cliente['tipo'];
+                                "Tipo " .
+                                $cliente['tipo'] . "</p>");
                             }
                         }
                     ?>
