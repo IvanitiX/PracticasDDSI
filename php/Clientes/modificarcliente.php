@@ -9,8 +9,6 @@
     $Tlf = $_POST['Tlf2'];
     $Cuenta_bancaria = $_POST['Cuenta_bancaria2'];
 
-    // Añadir la consulta del cliente con numero de id mayor para calcular el siguiente identificador
-
     $consulta = "UPDATE `clientes` SET `nombre` = '" . $Nombre . "', `apellidos` = '" . $Apellidos . "', `correo` = '" . $Correo . 
         "', `telefono` = '" . $Tlf . "', `cuentaBancaria` = '" . $Cuenta_bancaria . "' WHERE `idCliente` = " . $IDCliente ."; ";
     $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");

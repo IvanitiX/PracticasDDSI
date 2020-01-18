@@ -8,10 +8,14 @@
     $Tlf = $_POST['Tlf'];
     $Cuenta_bancaria = $_POST['Cuenta_bancaria'];
 
-    // Añadir la consulta del cliente con numero de id mayor para calcular el siguiente identificador
-
+    $consulta = "SELECT MAX(idCliente) FROM `clientes`";
+    $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+    $cliente = mysqli_fetch_array($resultado);
+    $idCliente = $cliente['idCliente'];
+    $idCliente++;
+        
     $consulta = "INSERT INTO `clientes` (`idCliente`, `dni`, `nombre`, `apellidos`, `fechaAlta`, `correo`, `telefono`, `cuentaBancaria`) VALUES
-                ( 11 , '" . $DNI . "', '" . $Nombre . "', '" . $Apellidos . "', CURDATE(), 
+                ( " . $idCliente . " , '" . $DNI . "', '" . $Nombre . "', '" . $Apellidos . "', CURDATE(), 
                 '" . $Correo . "', '" . $Tlf . "', '" . $Cuenta_bancaria . "')";
     $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
 

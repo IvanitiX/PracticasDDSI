@@ -21,25 +21,30 @@
             
             if($_SERVER["REQUEST_METHOD"] == "POST"){
                 if(empty($_POST["IDCliente"])){
-                    $error = "Campo obligatorio";
+                    $IDCliente = "";
+                    $Nombre = "";
+                    $Apellidos = "";
+                    $DNI = "";
+                    $Correo = "";
+                    $Tlf = "";
+                    $Cuenta_bancaria = "";
                 }else{
                     $IDCliente = $_POST['IDCliente'];
+                    
+                    $consulta = "SELECT * FROM `clientes` WHERE idCliente = " . $IDCliente . ";";
+                    $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+
+                    //if($resultado > 0) echo "Consulta realizada";
+                    //else echo "No existe ningun cliente con ese identificador." ;
+
+                    $cliente = mysqli_fetch_array($resultado);
+                    $Nombre = $cliente['nombre'] ;
+                    $Apellidos = $cliente['apellidos'] ;
+                    $DNI = $cliente['dni'];
+                    $Correo = $cliente['correo'];
+                    $Tlf = $cliente['telefono'];
+                    $Cuenta_bancaria = $cliente['cuentaBancaria'];
                 }
-            
-
-                $consulta = "SELECT * FROM `clientes` WHERE idCliente = " . $IDCliente . ";";
-                $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
-
-                //if($resultado > 0) echo "Consulta realizada";
-                //else echo "No existe ningun cliente con ese identificador." ;
-
-                $cliente = mysqli_fetch_array($resultado);
-                $Nombre = $cliente['nombre'] ;
-                $Apellidos = $cliente['apellidos'] ;
-                $DNI = $cliente['dni'];
-                $Correo = $cliente['correo'];
-                $Tlf = $cliente['telefono'];
-                $Cuenta_bancaria = $cliente['cuentaBancaria'];
             }
             // echo "<meta http-equiv=\"refresh\" content=\"1 ; url=http://localhost/Clientes/Clientes.php\">" ;
 
@@ -115,26 +120,19 @@
                 <form action="./modificarcliente.php" method="post">
                     <h4>Datos cliente</h4>
                     <p>Identificador cliente</p>
-                    <input type="text" name="IDCliente2" size="20" class="field" maxlength="30" readonly value="
-                    <?php  echo $IDCliente; ?>" />
+                    <input type="text" name="IDCliente2" size="20" class="field" maxlength="30" readonly value="<?php  echo $IDCliente; ?>" />
                     <p>DNI</p>
-                    <input type="text" name="DNI2" size="20" class="field" maxlength="30" readonly value="
-                    <?php  echo $DNI; ?>" />
+                    <input type="text" name="DNI2" size="20" class="field" maxlength="30" readonly value="<?php  echo $DNI; ?>" />
                     <p>Nombre</p>
-                    <input type="text" name="Nombre2" size="20" class="field" maxlength="30" value="
-                    <?php  echo $Nombre; ?>" />
+                    <input type="text" name="Nombre2" size="20" class="field" maxlength="30" value="<?php  echo $Nombre; ?>" />
                     <p>Apellidos</p>
-                    <input type="text" name="Apellidos2" size="20" class="field" maxlength="30" value="
-                    <?php  echo $Apellidos; ?>" /> 
+                    <input type="text" name="Apellidos2" size="20" class="field" maxlength="30" value=" <?php  echo $Apellidos; ?>" /> 
                     <p>Correo electrónico</p>
-                    <input type="text" name="Correo2" size="20" class="field" maxlength="30" value="
-                    <?php  echo $Correo; ?>" />
+                    <input type="text" name="Correo2" size="20" class="field" maxlength="30" value="<?php  echo $Correo; ?>" />
                     <p>Teléfono</p>
-                    <input type="text" name="Tlf2" size="20" class="field" maxlength="30" value="
-                    <?php  echo $Tlf; ?>" />
+                    <input type="text" name="Tlf2" size="20" class="field" maxlength="30" value="<?php  echo $Tlf; ?>" />
                     <p>Cuenta bancaria</p>
-                    <input type="text" name="Cuenta_bancaria2" size="20" class="field" maxlength="30" value="
-                    <?php  echo $Cuenta_bancaria; ?>" />
+                    <input type="text" name="Cuenta_bancaria2" size="20" class="field" maxlength="30" value="<?php  echo $Cuenta_bancaria; ?>" />
                     
                     <!--<p>Tarifa</p>
                     <input type="text" name="Descripcion" size="20" class="field" maxlength="30"/>-->
