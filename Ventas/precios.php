@@ -51,7 +51,7 @@
         <div class="row">
             
             <div class="col-lg-8 col-sm-6">
-                <form style="width:400px">
+                <form style="width:450px" action="../php/Ventas/cambiarPrecios.php" method="post">
                     <h3>Lista de productos</h3>
                     <?php
                         include "../php/config_bbdd.php" ;
@@ -68,7 +68,7 @@
                         echo "</tr>";
                         while($fila = mysqli_fetch_array($resultado)){
                             echo "<tr>";
-                            echo "<td>" . $fila['IdProducto'] . "</td><td>" . $fila['Descripcion'] . "</td><td>" . $fila['Cantidad'] ."</td><td>" . $fila['Precio'] . "</td><td><input name=" . $fila['Descripcion'] . "\" type=number min=0 max=9999 size=20 value=" . $fila['Precio'] . ">" 
+                            echo "<td>" . $fila['IdProducto'] . "</td><td>" . $fila['Descripcion'] . "</td><td>" . $fila['Cantidad'] ."</td><td>" . $fila['Precio'] . "</td><td><input name=" . $fila['IdProducto'] . " type=number min=0 max=99999 size=20>" 
                             . "</td>";
                             echo "</tr>";
                         }
@@ -83,3 +83,4 @@
     </body>
     
 </html>
+
