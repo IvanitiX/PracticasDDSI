@@ -84,19 +84,19 @@
                 <form action="../php/Clientes/modificarcliente.php" method="post">
                     <h4>Datos cliente</h4>
                     <p>Identificador cliente</p>
-                    <input type="text" name="IDCliente" size="20" class="field" maxlength="30" readonly/>
+                    <input type="text" name="IDCliente2" size="20" class="field" maxlength="30" readonly/>
                     <p>DNI</p>
-                    <input type="text" name="DNI" size="20" class="field" maxlength="30" readonly/>
+                    <input type="text" name="DNI2" size="20" class="field" maxlength="30" readonly/>
                     <p>Nombre</p>
-                    <input type="text" name="Nombre" size="20" class="field" maxlength="30"/>
+                    <input type="text" name="Nombre2" size="20" class="field" maxlength="30"/>
                     <p>Apellidos</p>
-                    <input type="text" name="Apellidos" size="20" class="field" maxlength="30"/>
+                    <input type="text" name="Apellidos2" size="20" class="field" maxlength="30"/>
                     <p>Correo electrónico</p>
-                    <input type="text" name="Correo" size="20" class="field" maxlength="30"/>
+                    <input type="text" name="Correo2" size="20" class="field" maxlength="30"/>
                     <p>Teléfono</p>
-                    <input type="text" name="Tlf" size="20" class="field" maxlength="30"/>
+                    <input type="text" name="Tlf2" size="20" class="field" maxlength="30"/>
                     <p>Cuenta bancaria</p>
-                    <input type="text" name="Cuenta_bancaria" size="20" class="field" maxlength="30"/>
+                    <input type="text" name="Cuenta_bancaria2" size="20" class="field" maxlength="30"/>
                     
                     <!--<p>Tarifa</p>
                     <input type="text" name="Descripcion" size="20" class="field" maxlength="30"/>-->
