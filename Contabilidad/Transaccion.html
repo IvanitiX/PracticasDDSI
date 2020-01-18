@@ -42,23 +42,35 @@
             <div class="row">
                 <div class="vertical-menu col-lg-4 col-sm-4">
                     <a href="./Contabilidad.html" >Contabilidad</a>
-                    <a href="./Activo.html">Activo</a>
-                    <a href="./Pasivo.html">Pasivo</a>
+                    <a href="./Activo.php">Activo</a>
+                    <a href="./Pasivo.php">Pasivo</a>
                     <a href="./Transaccion.html">Transaccion</a>
                     <a href="./Balance_Economico.html">Balance Economico</a>
                 </div>
     
-                <div class="inicio col-lg-6 col-sm-6 offset-sm-2">
-                    <form action="./php/" class="formrrhh">
+                <div class="inicio col-lg-6 col-sm-6">
+                    <h1>Contabilidad > Transaccion</h1>
+                </div>
+
+                <div class="inicio col-lg-6 col-sm-6 offset-sm-4">
+                    <form action="./php/Contabilidad/" method="POST" class="clase">
                         <h4>Introducir datos</h4>
                         <p>Fecha:</p>
                             <input type="date" name="fecha" class="field" size="20" maxlength="10"/>
-                    
+                        <p></p>
                         <p>Importe:</p>
                             <input type="number" name="Importe" class="field" size="20" maxlength="10"/>
-                        <p>Seleccione tipo de transaccion</p>
-                            <input type="select" name="tipo" class="field" size="20" maxlength="10"/>
                         <p></p>
+                        <p>Seleccione tipo de transaccion</p>
+                           <select name="Tipo"  class="field"> 
+                               <option value="Activo">Activo</option>
+                               <option value="Pasivo">Pasivo</option>
+                           </select> 
+                        <p></p>
+                        <p>Descripción:</p>
+                            <input type="text" name="Descripcion" class="field" size="20" maxlength="10">
+                            <p></p>
+       
                             <input type="submit" value="Submit" class="botton" />
                     </form>
                 </div>

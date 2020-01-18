@@ -39,7 +39,7 @@
                 $destino = "../Inventario/inventario.php" ;
             break ;
             case 'Contabilidad' :
-                $destino = "../RRHH/RRHH.html" ;
+                $destino = "../Contabilidad/Contabilidad.html" ;
             break ;
             case 'Ventas' :
                 $destino = "../Ventas/Ventas.php" ;

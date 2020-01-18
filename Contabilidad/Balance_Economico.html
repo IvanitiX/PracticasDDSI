@@ -15,11 +15,6 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
       
-        <style>
-            
-          
-            
-        </style>
 
         </head>
         <body>
@@ -40,25 +35,27 @@
     <body>
         <div class="inicio container">
             <div class="row">
-                <div class="vertical-menu col-lg-3 col-sm-4">
+                <div class="vertical-menu col-lg-4 col-sm-4">
                     <a href="./Contabilidad.html" >Contabilidad</a>
-                    <a href="./Activo.html">Activo</a>
-                    <a href="./Pasivo.html">Pasivo</a>
+                    <a href="./Activo.php">Activo</a>
+                    <a href="./Pasivo.php">Pasivo</a>
                     <a href="./Transaccion.html">Transaccion</a>
                     <a href="./Balance_Economico.html">Balance Economico</a>
-                    <div class="inicio col-lg-6 col-sm-6">
-                        <h1>Contabilidad > Balance Económico</h1>
-                    </div>
+                    
                 </div>
-    
-                <div class="inicio col-lg-6 col-sm-6 offset-sm-2" >
-                    <form action="./php/" class="formrrhh">
+
+                <div class="inicio col-lg-6 col-sm-6">
+                    <h1>Contabilidad > Balance Económico</h1>
+                </div>
+
+                <div class="inicio col-lg-6 col-sm-6 offset-sm-4" >
+                    <form action="../php/Contabilidad/balance.php" method="POST" class="clase">
                         <h4>Asignar fecha</h4>
                         <p>Fecha inicial:</p>
-                            <input type="date" name="fecha" class="field" size="20" maxlength="10"/>
+                            <input type="date" name="fechaini" class="field" size="20" maxlength="10"/>
                     
                         <p>Fecha final:</p>
-                            <input type="date" name="fecha" class="field" size="20" maxlength="10"/>
+                            <input type="date" name="fechafin" class="field" size="20" maxlength="10"/>
                         <p></p>
                             <input type="submit" value="Submit" class="botton" />
                     </form>
