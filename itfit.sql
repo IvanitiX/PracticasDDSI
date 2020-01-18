@@ -87,7 +87,7 @@ INSERT INTO `centro` (`idCentro`, `Altas`, `Bajas`, `NumEmpleados`) VALUES
 
 CREATE TABLE `citas` (
   `cliente` int(11) NOT NULL,
-  `fecha` date NOT NULL,
+  `fecha` datetime NOT NULL,
   `tipo` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
