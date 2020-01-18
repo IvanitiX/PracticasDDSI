@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-01-2020 a las 17:47:30
+-- Tiempo de generación: 18-01-2020 a las 16:53:09
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.1.33
 
@@ -21,6 +21,42 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `itfit`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `activos`
+--
+
+CREATE TABLE `activos` (
+  `ID_Transaccion` int(11) NOT NULL,
+  `Fecha` date NOT NULL,
+  `Descripcion` text NOT NULL,
+  `Importe` int(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cadena`
+--
+
+CREATE TABLE `cadena` (
+  `idCadena` varchar(10) NOT NULL,
+  `NumCentros` int(11) NOT NULL CHECK (`NumCentros` >= 1),
+  `Altas` int(11) NOT NULL CHECK (`Altas` >= 0),
+  `Bajas` int(11) NOT NULL CHECK (`Bajas` >= 0),
+  `NumEmpleados` int(11) NOT NULL,
+  `Maxempleados` int(11) NOT NULL,
+  `Vacantes` int(11) NOT NULL CHECK (`Vacantes` <= `Maxempleados`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `cadena`
+--
+
+INSERT INTO `cadena` (`idCadena`, `NumCentros`, `Altas`, `Bajas`, `NumEmpleados`, `Maxempleados`, `Vacantes`) VALUES
+('España', 2, 0, 0, 5, 100, 95);
 
 -- --------------------------------------------------------
 
@@ -53,7 +89,7 @@ CREATE TABLE `citas` (
   `cliente` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `tipo` varchar(10) NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -109,6 +145,27 @@ CREATE TABLE `contiene` (
 CREATE TABLE `da_acceso` (
   `idTarifa` int(11) NOT NULL,
   `idZona` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `empleadostrabajan`
+--
+
+CREATE TABLE `empleadostrabajan` (
+  `idEmpleado` varchar(8) NOT NULL,
+  `nombre` varchar(10) NOT NULL,
+  `apellidos` varchar(30) NOT NULL,
+  `domicilio` varchar(30) NOT NULL,
+  `IdCentro` varchar(3) NOT NULL,
+  `correo` varchar(100) NOT NULL,
+  `Telefono` varchar(9) NOT NULL,
+  `dni` varchar(9) NOT NULL,
+  `Puesto` varchar(20) NOT NULL,
+  `Jornada` int(11) DEFAULT NULL,
+  `Estado` varchar(10) NOT NULL CHECK (`Estado` in ('Activo','Baja')),
+  `Formación` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -197,6 +254,19 @@ CREATE TABLE `ofrece` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `pasivos`
+--
+
+CREATE TABLE `pasivos` (
+  `ID_Transiccion` int(11) NOT NULL,
+  `Fecha` date NOT NULL,
+  `Descripcion` text NOT NULL,
+  `Importe` int(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `productos`
 --
 
@@ -243,6 +313,12 @@ CREATE TABLE `zona` (
 --
 
 --
+-- Indices de la tabla `activos`
+--
+ALTER TABLE `activos`
+  ADD PRIMARY KEY (`ID_Transaccion`);
+
+--
 -- Indices de la tabla `centro`
 --
 ALTER TABLE `centro`
@@ -274,6 +350,13 @@ ALTER TABLE `contiene`
 ALTER TABLE `da_acceso`
   ADD PRIMARY KEY (`idTarifa`,`idZona`),
   ADD KEY `idZona` (`idZona`);
+
+--
+-- Indices de la tabla `empleadostrabajan`
+--
+ALTER TABLE `empleadostrabajan`
+  ADD PRIMARY KEY (`idEmpleado`) USING BTREE,
+  ADD KEY `empleadostrabajan_ibfk_1` (`IdCentro`);
 
 --
 -- Indices de la tabla `factura_hace`
@@ -309,6 +392,12 @@ ALTER TABLE `maquinas`
 ALTER TABLE `ofrece`
   ADD PRIMARY KEY (`idCentro`,`idTarifa`),
   ADD KEY `idTarifa` (`idTarifa`);
+
+--
+-- Indices de la tabla `pasivos`
+--
+ALTER TABLE `pasivos`
+  ADD PRIMARY KEY (`ID_Transiccion`);
 
 --
 -- Indices de la tabla `productos`
@@ -353,6 +442,12 @@ ALTER TABLE `contiene`
 ALTER TABLE `da_acceso`
   ADD CONSTRAINT `da_acceso_ibfk_1` FOREIGN KEY (`idTarifa`) REFERENCES `tarifa` (`idTarifa`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `da_acceso_ibfk_2` FOREIGN KEY (`idZona`) REFERENCES `zona` (`idZona`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `empleadostrabajan`
+--
+ALTER TABLE `empleadostrabajan`
+  ADD CONSTRAINT `empleadostrabajan_ibfk_1` FOREIGN KEY (`IdCentro`) REFERENCES `centro` (`idCentro`);
 
 --
 -- Filtros para la tabla `incidencias`
