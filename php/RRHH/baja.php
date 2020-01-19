@@ -106,7 +106,7 @@
             $consulta = "UPDATE centro Set Bajas=$bajas where idCentro='$idCentro' " ;
             $resultado = mysqli_query( $db, $consulta ) or die ( " Algo ha ido mal en la consulta a la base de datos");
     
-            $consulta3 = "SELECT *  FROM contiene where idCentro='$idCentro' " ;
+            $consulta3 = "SELECT *  FROM asocia where idCentro='$idCentro' " ;
             $resultado3 = mysqli_query( $db, $consulta3 ) or die ( " Algo ha ido mal en la consulta a la base de datos");
             $ret = mysqli_fetch_array($resultado3);
             $idCadena = $ret["idCadena"];

@@ -129,7 +129,7 @@
             $null ="NULL";
             $estado = 'Activo';
 
-            $consulta0 ="SELECT * FROM contiene WHERE `idCentro`= '$centro'";
+            $consulta0 ="SELECT * FROM asocia WHERE `idCentro`= '$centro'";
             $resultado0 = mysqli_query( $db, $consulta0 ) or die ( " Algo ha ido mal en la consulta a la base de datos");
             $ret = mysqli_fetch_array($resultado0);
             $idCadena = $ret["idCadena"];

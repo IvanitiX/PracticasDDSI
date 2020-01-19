@@ -32,8 +32,7 @@
       // Create the data table.
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'fecha');
-      data.addColumn('number', 'Pasivos');
-      data.addColumn('number', 'Activos') ;
+      data.addColumn('number', 'Total');
       data.addRows([
         //voy a usar php
         <?php
@@ -43,13 +42,11 @@
 
             include '../config_bbdd.php'; 
             $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE) or die ("<h5>No puedo conectarme a la BD.</h5>");
-            $consulta = "Select Fecha, Sum(Importe) from Pasivos Group by Fecha Having Fecha > $dateini and Fecha < $datefin" ;
+            $consulta = "Select Fecha,suma from (SELECT Fecha,Sum(Importe) as suma from activos union all SELECT Fecha,Sum(Importe) as suma from pasivos) as Transacciones  Group By Fecha Having Fecha > '2020-01-15' and Fecha < '2020-01-21'" ;
             $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
-            $consulta2 = "Select Fecha, Sum(Importe) from Activos Group by Fecha Having Fecha > $dateini and Fecha < $datefin" ;
-            $resultado2 = mysqli_query( $db, $consulta2 ) or die ( "Algo ha ido mal en la consulta a la base de datos");
             
-            while($columna = mysqli_fetch_array($resultado) || $columna2 = mysqli_fetch_array($resultado2)){
-                echo "['" . $columna['Fecha'] . "' , " . $columna['Sum(Importe)'] . " , " . $columna2['Sum(Importe)'] . "] , " ;
+            while($columna = mysqli_fetch_array($resultado)){
+                echo "['" . $columna['Fecha'] . "' , " . $columna['suma'] . "] , " ;
             }
         ?>
       ]);

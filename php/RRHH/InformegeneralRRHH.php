@@ -45,7 +45,7 @@
 <?php 
       $DB_SERVER = "localhost";
       $DB_USERNAME = "root";
-      $DB_PASSWORD = "";
+      $DB_PASSWORD = "ITFit";
       $DB_DATABASE = "itfit";
      
    $db = mysqli_connect($DB_SERVER,$DB_USERNAME,$DB_PASSWORD,$DB_DATABASE) or die ("No puedo conectarme a la BD.");
@@ -71,7 +71,7 @@
 
         $anadido = "";
         if($array["centro"] == "true"  ){
-            $consulta0 ="SELECT * FROM contiene WHERE `idCentro`= '$centro'";
+            $consulta0 ="SELECT * FROM asocia WHERE `idCentro`= '$centro'";
             $resultado0 = mysqli_query( $db, $consulta0 ) or die ( " Algo ha ido mal en la consulta a la base de datos");
             $ret = mysqli_fetch_array($resultado0);
             $idCadena = $ret["idCadena"];
