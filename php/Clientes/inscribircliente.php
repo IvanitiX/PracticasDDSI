@@ -11,7 +11,7 @@
     $consulta = "SELECT MAX(idCliente) FROM `clientes`";
     $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
     $cliente = mysqli_fetch_array($resultado);
-    $idCliente = $cliente['idCliente'];
+    $idCliente = $cliente['MAX(idCliente)'];
     $idCliente++;
         
     $consulta = "INSERT INTO `clientes` (`idCliente`, `dni`, `nombre`, `apellidos`, `fechaAlta`, `correo`, `telefono`, `cuentaBancaria`) VALUES

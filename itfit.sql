@@ -101,6 +101,23 @@ CREATE TABLE `citas` (
   `tipo` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+
+--
+-- Volcado de datos para la tabla `citas`
+--
+
+INSERT INTO `citas` (`cliente`, `fecha`, `tipo`) VALUES
+(1, '2020-02-19 12:30:00', 'Deportiva'),
+(1, '2020-03-22 09:45:00', 'Nutricion'),
+(3, '2020-01-22 10:30:00', 'Deportiva'),
+(3, '2020-01-22 11:00:00', 'Nutricion'),
+(4, '2020-01-26 10:45:00', 'Deportiva'),
+(5, '2020-02-09 10:30:00', 'Deportiva'),
+(6, '2020-01-30 18:00:00', 'Nutricion'),
+(7, '2020-02-15 17:00:00', 'Deportiva'),
+(8, '2020-01-21 17:30:00', 'Nutricion'),
+(10, '2020-01-23 17:45:00', 'Nutricion');
+
 -- --------------------------------------------------------
 
 --

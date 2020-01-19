@@ -98,11 +98,11 @@
                         if($IDCliente){
                             $i = 0;
                             while($cliente = mysqli_fetch_array($resultado)){
+                                $i++;
                                 echo ("<p> Fecha y hora " .
                                 $cliente['fecha'] .
                                 "Tipo " .
                                 $cliente['tipo'] . "</p>");
-                                $i++;
                             }
                             if($i == 0) echo "<p>Ninguna</p>";
                         }
