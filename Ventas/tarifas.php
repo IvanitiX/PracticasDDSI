@@ -104,7 +104,7 @@
                             $zona = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
 
                             while($n = mysqli_fetch_array($zona)){
-                                echo "<p>-". $n['nombre'] ."</p><br>";
+                                echo "<p>-". $n['nombre'] ."</p>";
                             }
                         }
                     ?>

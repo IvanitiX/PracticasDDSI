@@ -4,9 +4,16 @@
     $Nombre = $_POST['NombreTarifa'];
     $Precio = $_POST['precio'];
     
+    // calcular el siguiente idTarifa
+    $consulta = "SELECT max(idTarifa) FROM tarifa" ;
+    $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+    if($res = mysqli_fetch_array($resultado)){
+        $idTarifa = $res['max(idTarifa)'] + 1;
+    } else $idTarifa = 1;
+
     // Primero añado la tarifa
     $consulta = "INSERT INTO `tarifa` (`idTarifa`, `nombre`, `precio`) VALUES 
-                ( 1 , '" . $Nombre . "', " . $Precio . ")"; // falta calculo $idTarifa
+                ( ". $idTarifa ." , '" . $Nombre . "', " . $Precio . ")"; 
     $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
 
     // Segundo: Añado a la tabla da_acceso las relaciones de la tarifa con las zonas
@@ -15,7 +22,7 @@
     
     while($zona = mysqli_fetch_array($resultado2)){
         if(array_key_exists($zona['idZona'], $_POST)){
-            $consulta = "INSERT INTO `da_acceso` (`idTarifa`, `idZona`) VALUES ( 1, " . $zona['idZona'] .  ")" ; // 1 = calculo $idTarifa
+            $consulta = "INSERT INTO `da_acceso` (`idTarifa`, `idZona`) VALUES ( ". $idTarifa .", " . $zona['idZona'] .  ")" ; // 1 = calculo $idTarifa
             mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
         }
     }

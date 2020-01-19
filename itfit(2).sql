@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-01-2020 a las 13:16:46
+-- Tiempo de generación: 19-01-2020 a las 14:07:21
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.1.33
 
@@ -200,6 +200,32 @@ CREATE TABLE `contiene` (
   `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `contiene`
+--
+
+INSERT INTO `contiene` (`idFactura`, `idProducto`, `cantidad`) VALUES
+(1, 2, 5),
+(2, 3, 4),
+(2, 5, 1),
+(2, 6, 4),
+(3, 2, 3),
+(4, 3, 3),
+(4, 4, 1),
+(4, 5, 2),
+(5, 5, 3),
+(5, 6, 1),
+(6, 3, 5),
+(6, 6, 3),
+(7, 1, 1),
+(7, 2, 1),
+(7, 3, 2),
+(8, 2, 2),
+(9, 3, 3),
+(9, 5, 5),
+(10, 5, 11),
+(10, 6, 5);
+
 -- --------------------------------------------------------
 
 --
@@ -210,6 +236,31 @@ CREATE TABLE `da_acceso` (
   `idTarifa` int(11) NOT NULL,
   `idZona` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `da_acceso`
+--
+
+INSERT INTO `da_acceso` (`idTarifa`, `idZona`) VALUES
+(1, 1),
+(1, 4),
+(2, 1),
+(2, 3),
+(2, 4),
+(3, 1),
+(3, 2),
+(3, 4),
+(4, 1),
+(4, 6),
+(5, 1),
+(5, 4),
+(5, 5),
+(6, 1),
+(6, 2),
+(6, 3),
+(6, 4),
+(6, 5),
+(6, 6);
 
 -- --------------------------------------------------------
 
@@ -286,6 +337,22 @@ CREATE TABLE `factura_hace` (
   `fecha` date NOT NULL,
   `idEmpleado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `factura_hace`
+--
+
+INSERT INTO `factura_hace` (`idFactura`, `fecha`, `idEmpleado`) VALUES
+(1, '2020-01-19', 9612214),
+(2, '2020-01-19', 6448481),
+(3, '2020-01-19', 31),
+(4, '2020-01-19', 9731154),
+(5, '2020-01-19', 31),
+(6, '2020-01-19', 6448481),
+(7, '2020-01-19', 8888455),
+(8, '2020-01-19', 5454547),
+(9, '2020-01-19', 3121212),
+(10, '2020-01-19', 1598875);
 
 -- --------------------------------------------------------
 
@@ -439,12 +506,12 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`IdProducto`, `Descripcion`, `Cantidad`, `Precio`) VALUES
-(1, 'Whey', 20, 35),
-(2, 'LCarnitina', 49, 10),
-(3, 'Sustitutivo Vainilla', 40, 10),
-(4, 'Sustitutivo Fresa', 20, 10),
-(5, 'Sustitutivo Chocolate', 50, 10),
-(6, 'Barrita Proteina', 100, 1),
+(1, 'Whey', 4, 35),
+(2, 'LCarnitina', 38, 10),
+(3, 'Sustitutivo Vainilla', 23, 10),
+(4, 'Sustitutivo Fresa', 10, 10),
+(5, 'Sustitutivo Chocolate', 28, 10),
+(6, 'Barrita Proteina', 87, 1),
 (7, 'test', 0, 10),
 (8, 'test', 0, 10),
 (9, 'test', 0, 10),
@@ -462,6 +529,18 @@ CREATE TABLE `tarifa` (
   `precio` decimal(10,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `tarifa`
+--
+
+INSERT INTO `tarifa` (`idTarifa`, `nombre`, `precio`) VALUES
+(1, 'Basica', '15'),
+(2, 'Basica+padel', '25'),
+(3, 'Basica+piscina', '25'),
+(4, 'Taekwondo', '20'),
+(5, 'Club', '32'),
+(6, 'Completa', '45');
+
 -- --------------------------------------------------------
 
 --
@@ -472,6 +551,18 @@ CREATE TABLE `zona` (
   `idZona` int(11) NOT NULL,
   `nombre` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `zona`
+--
+
+INSERT INTO `zona` (`idZona`, `nombre`) VALUES
+(5, 'Actividades club'),
+(4, 'Actividades dirigidas'),
+(1, 'Maquinas'),
+(2, 'Piscina'),
+(3, 'Pistas de padel'),
+(6, 'Taekwondo');
 
 --
 -- Índices para tablas volcadas

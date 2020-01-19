@@ -66,7 +66,7 @@
                         }
                         echo "</select>";
                 
-                        $consulta = "Select * from Productos Order By IdProducto" ;
+                        $consulta = "Select * from productos Order By IdProducto" ;
                         $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
                         echo "<table borde='2'>";
                         echo "<tr>";
