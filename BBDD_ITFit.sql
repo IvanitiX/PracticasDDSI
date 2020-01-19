@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-01-2020 a las 15:01:47
+-- Tiempo de generación: 19-01-2020 a las 15:34:33
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.1.33
 
@@ -240,13 +240,25 @@ CREATE TABLE `da_acceso` (
 --
 
 INSERT INTO `da_acceso` (`idTarifa`, `idZona`) VALUES
-(7, 1),
-(7, 2),
-(8, 1),
-(8, 2),
-(8, 5),
-(8, 6),
-(8, 7);
+(1, 1),
+(1, 4),
+(2, 1),
+(2, 3),
+(2, 4),
+(3, 1),
+(3, 2),
+(3, 4),
+(4, 1),
+(4, 6),
+(5, 1),
+(5, 4),
+(5, 5),
+(6, 1),
+(6, 2),
+(6, 3),
+(6, 4),
+(6, 5),
+(6, 6);
 
 -- --------------------------------------------------------
 
@@ -456,17 +468,6 @@ INSERT INTO `maquinas` (`IdCentro`, `IdMaquina`, `IdInstancia`, `Descripcion`) V
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ofrece`
---
-
-CREATE TABLE `ofrece` (
-  `idCentro` varchar(4) NOT NULL,
-  `idTarifa` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `pasivos`
 --
 
@@ -544,9 +545,7 @@ INSERT INTO `tarifa` (`idTarifa`, `nombre`, `precio`) VALUES
 (3, 'Basica+piscina', '25'),
 (4, 'Taekwondo', '20'),
 (5, 'Club', '32'),
-(6, 'Completa', '45'),
-(7, 'Hola', '59'),
-(8, 'La mamadisima', '120');
+(6, 'Completa', '45');
 
 -- --------------------------------------------------------
 
@@ -672,13 +671,6 @@ ALTER TABLE `maquinas`
   ADD KEY `IdInstancia` (`IdInstancia`);
 
 --
--- Indices de la tabla `ofrece`
---
-ALTER TABLE `ofrece`
-  ADD PRIMARY KEY (`idCentro`,`idTarifa`),
-  ADD KEY `idTarifa` (`idTarifa`);
-
---
 -- Indices de la tabla `pasivos`
 --
 ALTER TABLE `pasivos`
@@ -754,13 +746,6 @@ ALTER TABLE `incidencias`
 --
 ALTER TABLE `maquinas`
   ADD CONSTRAINT `maquinas_ibfk_1` FOREIGN KEY (`IdCentro`) REFERENCES `centro` (`idCentro`);
-
---
--- Filtros para la tabla `ofrece`
---
-ALTER TABLE `ofrece`
-  ADD CONSTRAINT `ofrece_ibfk_1` FOREIGN KEY (`idCentro`) REFERENCES `centro` (`idCentro`) ON DELETE CASCADE,
-  ADD CONSTRAINT `ofrece_ibfk_2` FOREIGN KEY (`idTarifa`) REFERENCES `tarifa` (`idTarifa`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

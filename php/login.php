@@ -29,9 +29,6 @@
             case 'RRHH' :
                 $destino = "../RRHH/RRHH.html" ;
             break ;
-            case 'Admin' :
-                $destino = "../RRHH/RRHH.html" ;
-            break ;
             case 'Clientes' :
                 $destino = "../Clientes/Clientes.php" ;
             break ;
