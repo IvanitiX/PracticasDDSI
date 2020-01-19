@@ -45,7 +45,7 @@
 <?php 
       $DB_SERVER = "localhost";
       $DB_USERNAME = "root";
-      $DB_PASSWORD = "";
+      $DB_PASSWORD = "ITFit";
       $DB_DATABASE = "itfit";
      
    $db = mysqli_connect($DB_SERVER,$DB_USERNAME,$DB_PASSWORD,$DB_DATABASE) or die ("No puedo conectarme a la BD.");
