@@ -51,11 +51,21 @@
         <div class="row">
             
             <div class="col-lg-8 col-sm-6">
-                <form>
+                <form action="../php/Ventas/realizarVenta.php" method="post">
                     <h3>Factura</h3>
+                    <p>Empleado que realiza la factura:</p>
                     <?php
                         include "../php/config_bbdd.php" ;
                         $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE) or die ("<h5>No puedo conectarme a la BD.</h5>");
+                    
+                        $consulta = "SELECT idEmpleado FROM empleadostrabajan Order By idEmpleado" ;
+                        $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+                        echo "<select name=idEmpleado>";
+                         while($fila = mysqli_fetch_array($resultado)){
+                            echo "<option value=". $fila['idEmpleado'] .">" . $fila['idEmpleado'] . "</option>\n";
+                        }
+                        echo "</select>";
+                
                         $consulta = "Select * from Productos Order By IdProducto" ;
                         $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
                         echo "<table borde='2'>";
@@ -67,7 +77,7 @@
                         echo "</tr>";
                         while($fila = mysqli_fetch_array($resultado)){
                             echo "<tr>";
-                            echo "<td>" . $fila['Descripcion'] . "</td><td>" . $fila['Cantidad'] ."</td><td style=text-align:center>" . $fila['Precio'] . "</td><td><input name=" . $fila['Descripcion'] . "\" type=number min=0 max=".$fila['Cantidad']." size=20>" 
+                            echo "<td>" . $fila['Descripcion'] . "</td><td>" . $fila['Cantidad'] ."</td><td style=text-align:center>" . $fila['Precio'] . "</td><td><input name=" . $fila['IdProducto'] . " type=number min=0 max=".$fila['Cantidad']." size=20>" 
                             . "</td>";
                             echo "</tr>";
                         }
