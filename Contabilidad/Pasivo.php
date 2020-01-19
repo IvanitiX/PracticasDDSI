@@ -49,8 +49,8 @@
 
       // Set chart options
       var options = {'title':'Pasivo de la temporada',
-                     'width':400,
-                     'height':300};
+                     'width':1280,
+                     'height':720};
 
       // Instantiate and draw our chart, passing in some options.
       var chart = new google.visualization.LineChart(document.getElementById('grafico'));
@@ -73,7 +73,7 @@
             </span>
         </nav>
     
-    <body>
+        <div class="inicio container">
         <div class="inicio container">
             <div class="row">
                 <div class="vertical-menu col-lg-4 col-sm-4">
@@ -82,13 +82,16 @@
                     <a href="./Pasivo.php">Pasivo</a>
                     <a href="./Transaccion.html">Transaccion</a>
                     <a href="./Balance_Economico.html">Balance Economico</a>
-                    
                 </div>
                 <div class="inicio col-lg-6 col-sm-6">
                     <h1>Contabilidad > Pasivo</h1>
                 </div>
-                
 
+                <div class="row">
+                    <div class="col-sm-4 offset-sm-3">
+                        <div id="grafico"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>

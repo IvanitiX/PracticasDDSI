@@ -49,8 +49,8 @@
 
       // Set chart options
       var options = {'title':'Activo de la temporada',
-                     'width':400,
-                     'height':300};
+                     'width':1280,
+                     'height':720};
 
       // Instantiate and draw our chart, passing in some options.
       var chart = new google.visualization.LineChart(document.getElementById('grafico'));
@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-4 offset-sm-11">
+                    <div class="col-sm-4 offset-sm-3">
                         <div id="grafico"></div>
                     </div>
                 </div>

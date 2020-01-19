@@ -42,7 +42,7 @@
 
             include '../config_bbdd.php'; 
             $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE) or die ("<h5>No puedo conectarme a la BD.</h5>");
-            $consulta = "Select Fecha,suma from (SELECT Fecha,Sum(Importe) as suma from activos union all SELECT Fecha,Sum(Importe) as suma from pasivos) as Transacciones  Group By Fecha Having Fecha > '2020-01-15' and Fecha < '2020-01-21'" ;
+            $consulta = "Select Fecha,suma from (SELECT Fecha,Sum(Importe) as suma from activos Group By Fecha Having Fecha >= '$dateini' and Fecha <= '$datefin' union all SELECT Fecha,Sum(Importe) as suma from pasivos Group By Fecha Having Fecha >= '$dateini' and Fecha <= '$datefin') as Transacciones" ;
             $resultado = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
             
             while($columna = mysqli_fetch_array($resultado)){
@@ -52,9 +52,9 @@
       ]);
 
       // Set chart options
-      var options = {'title':'Activo de la temporada',
-                     'width':400,
-                     'height':300};
+      var options = {'title':'Balance económico de la temporada',
+                     'width':1280,
+                     'height':720};
 
       // Instantiate and draw our chart, passing in some options.
       var chart = new google.visualization.LineChart(document.getElementById('grafico'));
@@ -92,7 +92,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-4 offset-sm-11">
+                    <div class="col-sm-4 offset-sm-3">
                         <div id="grafico"></div>
                     </div>
                 </div>
