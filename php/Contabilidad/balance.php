@@ -65,7 +65,7 @@
         <body>
             <nav class="navbar sticky-top navbar-expand-lg navbar-dark header">
             <a href="#" class="navbar-brand mr-auto">
-                <img src="../img/Logo.png" alt="ITFit" width="64" height="64"/>
+                <img src="../../img/Logo.png" alt="ITFit" width="64" height="64"/>
             </a>
             <span class="areagestion navbar-text">
                 <ul class="navbar-nav">
