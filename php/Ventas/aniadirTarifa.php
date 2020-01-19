@@ -14,8 +14,8 @@
     $resultado2 = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
     
     while($zona = mysqli_fetch_array($resultado2)){
-        if(array_key_exists($zona['IdZona'], $_POST)){
-            $consulta = "INSERT INTO `da_acceso` (`idTarifa`, `idZona`) VALUES ( 1, " . $zona['Idzona'] .  ")" ; // 1 = calculo $idTarifa
+        if(array_key_exists($zona['idZona'], $_POST)){
+            $consulta = "INSERT INTO `da_acceso` (`idTarifa`, `idZona`) VALUES ( 1, " . $zona['idZona'] .  ")" ; // 1 = calculo $idTarifa
             mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
         }
     }

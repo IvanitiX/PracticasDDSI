@@ -50,7 +50,7 @@
         
         <div class="row">
             
-            <div class="col-lg-5 col-sm-6">
+            <div class="col-lg-4 col-sm-6">
                 <form action="../php/Ventas/aniadirTarifa.php" method="post">
                     <h4>Añadir tarifa</h4>
                     <p>Nombre de la tarifa:</p>
@@ -76,13 +76,38 @@
                 </form>
             </div>
             
-            <div class="col-lg-5 col-sm-6">
+            <div class="col-lg-3 col-sm-6">
                 <form action="../php/Ventas/aniadirZona.php" method="post">
                     <h4>Añadir zona</h4>
                     <p>Nombre de la zona:</p>
                     <input type="text" name="NombreZona" size="20" class="field" maxlength="30"/>
                     <p></p>
                     <input type="submit" class="botton" value="Añadir">
+                </form>
+            </div>
+            
+            <div class="col-lg-3 col-sm-6">
+                <form>
+                    <h4>Tarifas disponibles</h4>
+                    <?php
+                        // Consulto todas las tarifas que hay
+                        $consulta = "Select * from tarifa Order By idTarifa" ;
+                        $tarifa = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+
+                        /* Para cada tarifa 
+                            Muestro su nombre
+                            consulto las zonas a las que da acceso y las voy mostrando */
+                        while($fila = mysqli_fetch_array($tarifa)){
+                            echo "<h6>". $fila['nombre'] . "</h6>";
+
+                            $consulta = "SELECT * FROM da_acceso D, zona Z WHERE D.idZona=Z.idZona AND idTarifa=". $fila['idTarifa'] ;
+                            $zona = mysqli_query( $db, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+
+                            while($n = mysqli_fetch_array($zona)){
+                                echo "<p>-". $n['nombre'] ."</p><br>";
+                            }
+                        }
+                    ?>
                 </form>
             </div>
             
